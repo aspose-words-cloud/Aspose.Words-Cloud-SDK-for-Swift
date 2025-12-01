@@ -343,13 +343,13 @@ public class FieldOptions : Codable, WordsApiModel {
 
     }
 
-    // Sets currentUser. Gets or sets Curren tUser.
+    // Sets currentUser. Gets or sets Current User.
     public func setCurrentUser(currentUser : UserInformation?) -> FieldOptions {
         self.currentUser = currentUser;
         return self;
     }
 
-    // Gets currentUser. Gets or sets Curren tUser.
+    // Gets currentUser. Gets or sets Current User.
     public func getCurrentUser() -> UserInformation? {
         return self.currentUser;
     }

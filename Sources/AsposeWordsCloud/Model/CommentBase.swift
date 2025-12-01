@@ -222,25 +222,25 @@ public class CommentBase : Codable, WordsApiModel {
     }
 
 
-    // Sets author. Gets or sets the author name for a comment. Cannot be null.Default is empty string.
+    // Sets author. Gets or sets the author name for a comment. Cannot be null.Default is an empty string.
     public func setAuthor(author : String?) -> CommentBase {
         self.author = author;
         return self;
     }
 
-    // Gets author. Gets or sets the author name for a comment. Cannot be null.Default is empty string.
+    // Gets author. Gets or sets the author name for a comment. Cannot be null.Default is an empty string.
     public func getAuthor() -> String? {
         return self.author;
     }
 
 
-    // Sets initial. Gets or sets the initials of the user associated with a specific comment. Cannot be null.Default is empty string.
+    // Sets initial. Gets or sets the initials of the user associated with a specific comment. Cannot be null.Default is an empty string.
     public func setInitial(initial : String?) -> CommentBase {
         self.initial = initial;
         return self;
     }
 
-    // Gets initial. Gets or sets the initials of the user associated with a specific comment. Cannot be null.Default is empty string.
+    // Gets initial. Gets or sets the initials of the user associated with a specific comment. Cannot be null.Default is an empty string.
     public func getInitial() -> String? {
         return self.initial;
     }

@@ -161,13 +161,13 @@ public class StyleUpdate : Codable, WordsApiModel {
     }
 
 
-    // Sets name. Gets or sets the name of the style. Can not be empty string. If there already is a style with such name in the collection, than this style will override it. All affected nodes will reference new style.
+    // Sets name. Gets or sets the name of the style. Cannot be an empty string. If there already is a style with such name in the collection, than this style will override it. All affected nodes will reference new style.
     public func setName(name : String?) -> StyleUpdate {
         self.name = name;
         return self;
     }
 
-    // Gets name. Gets or sets the name of the style. Can not be empty string. If there already is a style with such name in the collection, than this style will override it. All affected nodes will reference new style.
+    // Gets name. Gets or sets the name of the style. Cannot be an empty string. If there already is a style with such name in the collection, than this style will override it. All affected nodes will reference new style.
     public func getName() -> String? {
         return self.name;
     }

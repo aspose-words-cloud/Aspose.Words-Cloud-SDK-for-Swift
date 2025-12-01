@@ -469,13 +469,13 @@ public class SaveOptionsData : Codable, WordsApiModel {
     }
 
 
-    // Sets updateCreatedTimeProperty. Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving. Default value is false.
+    // Sets updateCreatedTimeProperty. Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving. The default value is false.
     public func setUpdateCreatedTimeProperty(updateCreatedTimeProperty : Bool?) -> SaveOptionsData {
         self.updateCreatedTimeProperty = updateCreatedTimeProperty;
         return self;
     }
 
-    // Gets updateCreatedTimeProperty. Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving. Default value is false.
+    // Gets updateCreatedTimeProperty. Gets or sets a value determining whether the Aspose.Words.Properties.BuiltInDocumentProperties.CreatedTime property is updated before saving. The default value is false.
     public func getUpdateCreatedTimeProperty() -> Bool? {
         return self.updateCreatedTimeProperty;
     }

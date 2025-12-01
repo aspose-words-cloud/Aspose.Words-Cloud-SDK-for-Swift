@@ -91,7 +91,7 @@ public class HtmlSaveOptionsData : SaveOptionsData {
     }
 
     // Gets or sets the version of HTML standard, that should be used when saving the document to HTML or MHTML.
-    // Default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
+    // The default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
     public enum HtmlVersion : String, Codable
     {
         // Enum value "xhtml"
@@ -1117,13 +1117,13 @@ public class HtmlSaveOptionsData : SaveOptionsData {
     }
 
 
-    // Sets exportPageMargins. Gets or sets a value indicating whether page margins are exported to HTML, MHTML or EPUB. The default value is false. Aspose.Words does not show area of page margins by default. If any elements are completely or partially clipped by the document edge the displayed area can be extended with this option.
+    // Sets exportPageMargins. Gets or sets a value indicating whether page margins are exported to HTML, MHTML or EPUB. The default value is false. Aspose.Words does not show the area of page margins by default. If any elements are completely or partially clipped by the document edge the displayed area can be extended with this option.
     public func setExportPageMargins(exportPageMargins : Bool?) -> HtmlSaveOptionsData {
         self.exportPageMargins = exportPageMargins;
         return self;
     }
 
-    // Gets exportPageMargins. Gets or sets a value indicating whether page margins are exported to HTML, MHTML or EPUB. The default value is false. Aspose.Words does not show area of page margins by default. If any elements are completely or partially clipped by the document edge the displayed area can be extended with this option.
+    // Gets exportPageMargins. Gets or sets a value indicating whether page margins are exported to HTML, MHTML or EPUB. The default value is false. Aspose.Words does not show the area of page margins by default. If any elements are completely or partially clipped by the document edge the displayed area can be extended with this option.
     public func getExportPageMargins() -> Bool? {
         return self.exportPageMargins;
     }
@@ -1237,13 +1237,13 @@ public class HtmlSaveOptionsData : SaveOptionsData {
     }
 
 
-    // Sets htmlVersion. Gets or sets the version of HTML standard, that should be used when saving the document to HTML or MHTML. Default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
+    // Sets htmlVersion. Gets or sets the version of HTML standard, that should be used when saving the document to HTML or MHTML. The default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
     public func setHtmlVersion(htmlVersion : HtmlVersion?) -> HtmlSaveOptionsData {
         self.htmlVersion = htmlVersion;
         return self;
     }
 
-    // Gets htmlVersion. Gets or sets the version of HTML standard, that should be used when saving the document to HTML or MHTML. Default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
+    // Gets htmlVersion. Gets or sets the version of HTML standard, that should be used when saving the document to HTML or MHTML. The default value is Aspose.Words.Saving.HtmlVersion.Xhtml.
     public func getHtmlVersion() -> HtmlVersion? {
         return self.htmlVersion;
     }
@@ -1333,13 +1333,13 @@ public class HtmlSaveOptionsData : SaveOptionsData {
     }
 
 
-    // Sets replaceBackslashWithYenSign. Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs. Default value is false. By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
+    // Sets replaceBackslashWithYenSign. Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs. The default value is false. By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
     public func setReplaceBackslashWithYenSign(replaceBackslashWithYenSign : Bool?) -> HtmlSaveOptionsData {
         self.replaceBackslashWithYenSign = replaceBackslashWithYenSign;
         return self;
     }
 
-    // Gets replaceBackslashWithYenSign. Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs. Default value is false. By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
+    // Gets replaceBackslashWithYenSign. Gets or sets the flag that indicates whether backslash characters should be replaced with yen signs. The default value is false. By default, Aspose.Words mimics MS Word's behavior and doesn't replace backslash characters with yen signs in generated HTML documents. However, previous versions of Aspose.Words performed such replacements in certain scenarios. This flag enables backward compatibility with previous versions of Aspose.Words.
     public func getReplaceBackslashWithYenSign() -> Bool? {
         return self.replaceBackslashWithYenSign;
     }

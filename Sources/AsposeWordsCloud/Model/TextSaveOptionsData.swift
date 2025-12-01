@@ -29,6 +29,17 @@ import Foundation
 
 // Container class for text save options.
 public class TextSaveOptionsData : TxtSaveOptionsBaseData {
+    // Gets or sets a value that specifies how OfficeMath will be written to the output file.
+    // The default value is Text.
+    public enum OfficeMathExportMode : String, Codable
+    {
+        // Enum value "text"
+        case text = "Text"
+
+        // Enum value "latex"
+        case latex = "Latex"
+    }
+
     // Field of addBidiMarks. Container class for text save options.
     private var _addBidiMarks : Bool? = nil;
 
@@ -50,6 +61,18 @@ public class TextSaveOptionsData : TxtSaveOptionsBaseData {
         }
         set {
             self._maxCharactersPerLine = newValue;
+        }
+    }
+
+    // Field of officeMathExportMode. Container class for text save options.
+    private var _officeMathExportMode : OfficeMathExportMode? = nil;
+
+    public var officeMathExportMode : OfficeMathExportMode? {
+        get {
+            return self._officeMathExportMode;
+        }
+        set {
+            self._officeMathExportMode = newValue;
         }
     }
 
@@ -89,6 +112,7 @@ public class TextSaveOptionsData : TxtSaveOptionsBaseData {
     private enum CodingKeys: String, CodingKey {
         case addBidiMarks = "AddBidiMarks";
         case maxCharactersPerLine = "MaxCharactersPerLine";
+        case officeMathExportMode = "OfficeMathExportMode";
         case preserveTableLayout = "PreserveTableLayout";
         case simplifyListLabels = "SimplifyListLabels";
         case invalidCodingKey;
@@ -102,6 +126,10 @@ public class TextSaveOptionsData : TxtSaveOptionsBaseData {
         try super.init(from: json);
         self.addBidiMarks = json["AddBidiMarks"] as? Bool;
         self.maxCharactersPerLine = json["MaxCharactersPerLine"] as? Int;
+        if let raw_officeMathExportMode = json["OfficeMathExportMode"] as? String {
+            self.officeMathExportMode = OfficeMathExportMode(rawValue: raw_officeMathExportMode);
+        }
+
         self.preserveTableLayout = json["PreserveTableLayout"] as? Bool;
         self.simplifyListLabels = json["SimplifyListLabels"] as? Bool;
     }
@@ -111,6 +139,7 @@ public class TextSaveOptionsData : TxtSaveOptionsBaseData {
         let container = try decoder.container(keyedBy: CodingKeys.self);
         self.addBidiMarks = try container.decodeIfPresent(Bool.self, forKey: .addBidiMarks);
         self.maxCharactersPerLine = try container.decodeIfPresent(Int.self, forKey: .maxCharactersPerLine);
+        self.officeMathExportMode = try container.decodeIfPresent(OfficeMathExportMode.self, forKey: .officeMathExportMode);
         self.preserveTableLayout = try container.decodeIfPresent(Bool.self, forKey: .preserveTableLayout);
         self.simplifyListLabels = try container.decodeIfPresent(Bool.self, forKey: .simplifyListLabels);
     }
@@ -123,6 +152,9 @@ public class TextSaveOptionsData : TxtSaveOptionsBaseData {
         }
         if (self.maxCharactersPerLine != nil) {
             try container.encode(self.maxCharactersPerLine, forKey: .maxCharactersPerLine);
+        }
+        if (self.officeMathExportMode != nil) {
+            try container.encode(self.officeMathExportMode, forKey: .officeMathExportMode);
         }
         if (self.preserveTableLayout != nil) {
             try container.encode(self.preserveTableLayout, forKey: .preserveTableLayout);
@@ -164,6 +196,18 @@ public class TextSaveOptionsData : TxtSaveOptionsBaseData {
     // Gets maxCharactersPerLine. Gets or sets an integer value that specifies the maximum number of characters per one line. The default value is 0, that means no limit.
     public func getMaxCharactersPerLine() -> Int? {
         return self.maxCharactersPerLine;
+    }
+
+
+    // Sets officeMathExportMode. Gets or sets a value that specifies how OfficeMath will be written to the output file. The default value is Text.
+    public func setOfficeMathExportMode(officeMathExportMode : OfficeMathExportMode?) -> TextSaveOptionsData {
+        self.officeMathExportMode = officeMathExportMode;
+        return self;
+    }
+
+    // Gets officeMathExportMode. Gets or sets a value that specifies how OfficeMath will be written to the output file. The default value is Text.
+    public func getOfficeMathExportMode() -> OfficeMathExportMode? {
+        return self.officeMathExportMode;
     }
 
 

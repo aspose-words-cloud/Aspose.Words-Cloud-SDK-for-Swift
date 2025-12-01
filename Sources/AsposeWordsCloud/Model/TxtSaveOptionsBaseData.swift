@@ -30,7 +30,7 @@ import Foundation
 // Base class for save options of text formats.
 public class TxtSaveOptionsBaseData : SaveOptionsData {
     // Gets or sets the option that controls whether to output headers and footers when exporting in plain text format.
-    // default value is TxtExportHeadersFootersMode.PrimaryOnly.
+    // The default value is TxtExportHeadersFootersMode.PrimaryOnly.
     public enum ExportHeadersFootersMode : String, Codable
     {
         // Enum value "_none"
@@ -159,13 +159,13 @@ public class TxtSaveOptionsBaseData : SaveOptionsData {
     }
 
 
-    // Sets exportHeadersFootersMode. Gets or sets the option that controls whether to output headers and footers when exporting in plain text format. default value is TxtExportHeadersFootersMode.PrimaryOnly.
+    // Sets exportHeadersFootersMode. Gets or sets the option that controls whether to output headers and footers when exporting in plain text format. The default value is TxtExportHeadersFootersMode.PrimaryOnly.
     public func setExportHeadersFootersMode(exportHeadersFootersMode : ExportHeadersFootersMode?) -> TxtSaveOptionsBaseData {
         self.exportHeadersFootersMode = exportHeadersFootersMode;
         return self;
     }
 
-    // Gets exportHeadersFootersMode. Gets or sets the option that controls whether to output headers and footers when exporting in plain text format. default value is TxtExportHeadersFootersMode.PrimaryOnly.
+    // Gets exportHeadersFootersMode. Gets or sets the option that controls whether to output headers and footers when exporting in plain text format. The default value is TxtExportHeadersFootersMode.PrimaryOnly.
     public func getExportHeadersFootersMode() -> ExportHeadersFootersMode? {
         return self.exportHeadersFootersMode;
     }

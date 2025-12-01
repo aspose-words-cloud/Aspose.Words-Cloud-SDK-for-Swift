@@ -169,73 +169,73 @@ public class SignOptions : Codable, WordsApiModel {
     public func validate() throws {
     }
 
-    // Sets comments. Gets or sets comments on the digital signature. Default value is empty string.
+    // Sets comments. Gets or sets comments on the digital signature. The default value is an empty string.
     public func setComments(comments : String?) -> SignOptions {
         self.comments = comments;
         return self;
     }
 
-    // Gets comments. Gets or sets comments on the digital signature. Default value is empty string.
+    // Gets comments. Gets or sets comments on the digital signature. The default value is an empty string.
     public func getComments() -> String? {
         return self.comments;
     }
 
 
-    // Sets decryptionPassword. Gets or sets the password to decrypt source document. Default value is empty string.
+    // Sets decryptionPassword. Gets or sets the password to decrypt source document. The default value is an empty string.
     public func setDecryptionPassword(decryptionPassword : String?) -> SignOptions {
         self.decryptionPassword = decryptionPassword;
         return self;
     }
 
-    // Gets decryptionPassword. Gets or sets the password to decrypt source document. Default value is empty string.
+    // Gets decryptionPassword. Gets or sets the password to decrypt source document. The default value is an empty string.
     public func getDecryptionPassword() -> String? {
         return self.decryptionPassword;
     }
 
 
-    // Sets providerId. Gets or sets the class Guid of the signature cryptography provider. Default value is Empty (all zeroes) Guid.
+    // Sets providerId. Gets or sets the class Guid of the signature cryptography provider. The default value is Empty (all zeroes) Guid.
     public func setProviderId(providerId : String?) -> SignOptions {
         self.providerId = providerId;
         return self;
     }
 
-    // Gets providerId. Gets or sets the class Guid of the signature cryptography provider. Default value is Empty (all zeroes) Guid.
+    // Gets providerId. Gets or sets the class Guid of the signature cryptography provider. The default value is Empty (all zeroes) Guid.
     public func getProviderId() -> String? {
         return self.providerId;
     }
 
 
-    // Sets signatureLineId. Gets or sets user defined signature line Guid. Default value is Empty (all zeroes) Guid.
+    // Sets signatureLineId. Gets or sets user defined signature line Guid. The default value is Empty (all zeroes) Guid.
     public func setSignatureLineId(signatureLineId : String?) -> SignOptions {
         self.signatureLineId = signatureLineId;
         return self;
     }
 
-    // Gets signatureLineId. Gets or sets user defined signature line Guid. Default value is Empty (all zeroes) Guid.
+    // Gets signatureLineId. Gets or sets user defined signature line Guid. The default value is Empty (all zeroes) Guid.
     public func getSignatureLineId() -> String? {
         return self.signatureLineId;
     }
 
 
-    // Sets signatureLineImageFilename. Gets or sets the image that will be shown in associated SignatureLine. Default value is empty string.
+    // Sets signatureLineImageFilename. Gets or sets the image that will be shown in associated SignatureLine. The default value is an empty string.
     public func setSignatureLineImageFilename(signatureLineImageFilename : String?) -> SignOptions {
         self.signatureLineImageFilename = signatureLineImageFilename;
         return self;
     }
 
-    // Gets signatureLineImageFilename. Gets or sets the image that will be shown in associated SignatureLine. Default value is empty string.
+    // Gets signatureLineImageFilename. Gets or sets the image that will be shown in associated SignatureLine. The default value is an empty string.
     public func getSignatureLineImageFilename() -> String? {
         return self.signatureLineImageFilename;
     }
 
 
-    // Sets signTime. Gets or sets the date of signing. Default value is current time (Now).
+    // Sets signTime. Gets or sets the date of signing. The default value is current time (Now).
     public func setSignTime(signTime : Date?) -> SignOptions {
         self.signTime = signTime;
         return self;
     }
 
-    // Gets signTime. Gets or sets the date of signing. Default value is current time (Now).
+    // Gets signTime. Gets or sets the date of signing. The default value is current time (Now).
     public func getSignTime() -> Date? {
         return self.signTime;
     }

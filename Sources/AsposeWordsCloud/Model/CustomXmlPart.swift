@@ -110,13 +110,13 @@ public class CustomXmlPart : CustomXmlPartLink {
     }
 
 
-    // Sets data. Gets or sets the custom xml part data. Cannot be null.Default is empty string.
+    // Sets data. Gets or sets the custom xml part data. Cannot be null.Default is an empty string.
     public func setData(data : String?) -> CustomXmlPart {
         self.data = data;
         return self;
     }
 
-    // Gets data. Gets or sets the custom xml part data. Cannot be null.Default is empty string.
+    // Gets data. Gets or sets the custom xml part data. Cannot be null.Default is an empty string.
     public func getData() -> String? {
         return self.data;
     }

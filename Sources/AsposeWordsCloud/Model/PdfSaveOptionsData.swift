@@ -30,7 +30,7 @@ import Foundation
 // Container class for pdf save options.
 public class PdfSaveOptionsData : FixedPageSaveOptionsData {
     // Gets or sets a value determining how attachments are embedded to the PDF document.
-    // Default value is None and attachments are not embedded.
+    // The default value is None and attachments are not embedded.
     // PDF/A-1, PDF/A-2 and regular PDF/A-4 (not PDF/A-4f) standards do not allow embedded files.
     // None value will be used automatically.
     public enum AttachmentsEmbeddingMode : String, Codable
@@ -554,6 +554,18 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         }
     }
 
+    // Field of exportFloatingShapesAsInlineTag. Container class for pdf save options.
+    private var _exportFloatingShapesAsInlineTag : Bool? = nil;
+
+    public var exportFloatingShapesAsInlineTag : Bool? {
+        get {
+            return self._exportFloatingShapesAsInlineTag;
+        }
+        set {
+            self._exportFloatingShapesAsInlineTag = newValue;
+        }
+    }
+
     // Field of saveFormat. Container class for pdf save options.
     private final let _saveFormat : String? = "pdf";
 
@@ -594,6 +606,7 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         case useSdtTagAsFormFieldName = "UseSdtTagAsFormFieldName";
         case zoomBehavior = "ZoomBehavior";
         case zoomFactor = "ZoomFactor";
+        case exportFloatingShapesAsInlineTag = "ExportFloatingShapesAsInlineTag";
         case invalidCodingKey;
     }
 
@@ -672,6 +685,7 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         }
 
         self.zoomFactor = json["ZoomFactor"] as? Int;
+        self.exportFloatingShapesAsInlineTag = json["ExportFloatingShapesAsInlineTag"] as? Bool;
     }
 
     public required init(from decoder: Decoder) throws {
@@ -707,6 +721,7 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         self.useSdtTagAsFormFieldName = try container.decodeIfPresent(Bool.self, forKey: .useSdtTagAsFormFieldName);
         self.zoomBehavior = try container.decodeIfPresent(ZoomBehavior.self, forKey: .zoomBehavior);
         self.zoomFactor = try container.decodeIfPresent(Int.self, forKey: .zoomFactor);
+        self.exportFloatingShapesAsInlineTag = try container.decodeIfPresent(Bool.self, forKey: .exportFloatingShapesAsInlineTag);
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -802,6 +817,9 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         if (self.zoomFactor != nil) {
             try container.encode(self.zoomFactor, forKey: .zoomFactor);
         }
+        if (self.exportFloatingShapesAsInlineTag != nil) {
+            try container.encode(self.exportFloatingShapesAsInlineTag, forKey: .exportFloatingShapesAsInlineTag);
+        }
     }
 
     public override func collectFilesContent(_ resultFilesContent : inout [FileReference]) {
@@ -816,25 +834,25 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
 
     }
 
-    // Sets attachmentsEmbeddingMode. Gets or sets a value determining how attachments are embedded to the PDF document. Default value is None and attachments are not embedded. PDF/A-1, PDF/A-2 and regular PDF/A-4 (not PDF/A-4f) standards do not allow embedded files. None value will be used automatically.
+    // Sets attachmentsEmbeddingMode. Gets or sets a value determining how attachments are embedded to the PDF document. The default value is None and attachments are not embedded. PDF/A-1, PDF/A-2 and regular PDF/A-4 (not PDF/A-4f) standards do not allow embedded files. None value will be used automatically.
     public func setAttachmentsEmbeddingMode(attachmentsEmbeddingMode : AttachmentsEmbeddingMode?) -> PdfSaveOptionsData {
         self.attachmentsEmbeddingMode = attachmentsEmbeddingMode;
         return self;
     }
 
-    // Gets attachmentsEmbeddingMode. Gets or sets a value determining how attachments are embedded to the PDF document. Default value is None and attachments are not embedded. PDF/A-1, PDF/A-2 and regular PDF/A-4 (not PDF/A-4f) standards do not allow embedded files. None value will be used automatically.
+    // Gets attachmentsEmbeddingMode. Gets or sets a value determining how attachments are embedded to the PDF document. The default value is None and attachments are not embedded. PDF/A-1, PDF/A-2 and regular PDF/A-4 (not PDF/A-4f) standards do not allow embedded files. None value will be used automatically.
     public func getAttachmentsEmbeddingMode() -> AttachmentsEmbeddingMode? {
         return self.attachmentsEmbeddingMode;
     }
 
 
-    // Sets cacheBackgroundGraphics. Gets or sets a value determining whether or not to cache graphics placed in document's background. Default value is true and background graphics are written to the PDF document as an xObject. When the value is false background graphics are not cached. Some shapes are not supported for caching(shapes with fields, bookmarks, HRefs). Document background graphic is various shapes, charts, images placed in the footer or header, well as background and border of a page.
+    // Sets cacheBackgroundGraphics. Gets or sets a value determining whether or not to cache graphics placed in document's background. The default value is true and background graphics are written to the PDF document as an xObject. When the value is false background graphics are not cached. Some shapes are not supported for caching(shapes with fields, bookmarks, HRefs). Document background graphic is various shapes, charts, images placed in the footer or header, well as background and border of a page.
     public func setCacheBackgroundGraphics(cacheBackgroundGraphics : Bool?) -> PdfSaveOptionsData {
         self.cacheBackgroundGraphics = cacheBackgroundGraphics;
         return self;
     }
 
-    // Gets cacheBackgroundGraphics. Gets or sets a value determining whether or not to cache graphics placed in document's background. Default value is true and background graphics are written to the PDF document as an xObject. When the value is false background graphics are not cached. Some shapes are not supported for caching(shapes with fields, bookmarks, HRefs). Document background graphic is various shapes, charts, images placed in the footer or header, well as background and border of a page.
+    // Gets cacheBackgroundGraphics. Gets or sets a value determining whether or not to cache graphics placed in document's background. The default value is true and background graphics are written to the PDF document as an xObject. When the value is false background graphics are not cached. Some shapes are not supported for caching(shapes with fields, bookmarks, HRefs). Document background graphic is various shapes, charts, images placed in the footer or header, well as background and border of a page.
     public func getCacheBackgroundGraphics() -> Bool? {
         return self.cacheBackgroundGraphics;
     }
@@ -912,14 +930,14 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
     }
 
 
-    // Sets embedAttachments. Gets or sets a value determining whether or not to embed attachments to the PDF document. Default value is false and attachments are not embedded. When the value is true attachments are embedded to the PDF document. Embedding attachments is not supported when saving to PDF/A and PDF/UA compliance. false value will be used automatically. Embedding attachments is not supported when encryption is enabled. false value will be used automatically.
+    // Sets embedAttachments. Gets or sets a value determining whether or not to embed attachments to the PDF document. The default value is false and attachments are not embedded. When the value is true attachments are embedded to the PDF document. Embedding attachments is not supported when saving to PDF/A and PDF/UA compliance. false value will be used automatically. Embedding attachments is not supported when encryption is enabled. false value will be used automatically.
     @available(*, deprecated, message: "Obsolete, please use AttachmentsEmbeddingMode instead.")
     public func setEmbedAttachments(embedAttachments : Bool?) -> PdfSaveOptionsData {
         self.embedAttachments = embedAttachments;
         return self;
     }
 
-    // Gets embedAttachments. Gets or sets a value determining whether or not to embed attachments to the PDF document. Default value is false and attachments are not embedded. When the value is true attachments are embedded to the PDF document. Embedding attachments is not supported when saving to PDF/A and PDF/UA compliance. false value will be used automatically. Embedding attachments is not supported when encryption is enabled. false value will be used automatically.
+    // Gets embedAttachments. Gets or sets a value determining whether or not to embed attachments to the PDF document. The default value is false and attachments are not embedded. When the value is true attachments are embedded to the PDF document. Embedding attachments is not supported when saving to PDF/A and PDF/UA compliance. false value will be used automatically. Embedding attachments is not supported when encryption is enabled. false value will be used automatically.
     @available(*, deprecated, message: "Obsolete, please use AttachmentsEmbeddingMode instead.")
     public func getEmbedAttachments() -> Bool? {
         return self.embedAttachments;
@@ -962,13 +980,13 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
     }
 
 
-    // Sets exportLanguageToSpanTag. Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language. Default value is false and "Lang" attribute is attached to a marked-content sequence in a page content stream. When the value is true "Span" tag is created for the text with non-default language and "Lang" attribute is attached to this tag. This value is ignored when Aspose.Words.Saving.PdfSaveOptions.ExportDocumentStructure is false.
+    // Sets exportLanguageToSpanTag. Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language. The default value is false and "Lang" attribute is attached to a marked-content sequence in a page content stream. When the value is true "Span" tag is created for the text with non-default language and "Lang" attribute is attached to this tag. This value is ignored when Aspose.Words.Saving.PdfSaveOptions.ExportDocumentStructure is false.
     public func setExportLanguageToSpanTag(exportLanguageToSpanTag : Bool?) -> PdfSaveOptionsData {
         self.exportLanguageToSpanTag = exportLanguageToSpanTag;
         return self;
     }
 
-    // Gets exportLanguageToSpanTag. Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language. Default value is false and "Lang" attribute is attached to a marked-content sequence in a page content stream. When the value is true "Span" tag is created for the text with non-default language and "Lang" attribute is attached to this tag. This value is ignored when Aspose.Words.Saving.PdfSaveOptions.ExportDocumentStructure is false.
+    // Gets exportLanguageToSpanTag. Gets or sets a value determining whether or not to create a "Span" tag in the document structure to export the text language. The default value is false and "Lang" attribute is attached to a marked-content sequence in a page content stream. When the value is true "Span" tag is created for the text with non-default language and "Lang" attribute is attached to this tag. This value is ignored when Aspose.Words.Saving.PdfSaveOptions.ExportDocumentStructure is false.
     public func getExportLanguageToSpanTag() -> Bool? {
         return self.exportLanguageToSpanTag;
     }
@@ -1175,5 +1193,17 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
     // Gets zoomFactor. Gets or sets the zoom factor (in percentages) for a document.
     public func getZoomFactor() -> Int? {
         return self.zoomFactor;
+    }
+
+
+    // Sets exportFloatingShapesAsInlineTag. Gets or sets a value determining whether floating shapes are exported as inline tags in the document structure. The default value is false and floating shapes will be exported as block-level tags, placed after the paragraph in which they are anchored. When the value is true floating shapes will be exported as inline tags, placed within the paragraph where they are anchored. This value is ignored when ExportDocumentStructure is false.
+    public func setExportFloatingShapesAsInlineTag(exportFloatingShapesAsInlineTag : Bool?) -> PdfSaveOptionsData {
+        self.exportFloatingShapesAsInlineTag = exportFloatingShapesAsInlineTag;
+        return self;
+    }
+
+    // Gets exportFloatingShapesAsInlineTag. Gets or sets a value determining whether floating shapes are exported as inline tags in the document structure. The default value is false and floating shapes will be exported as block-level tags, placed after the paragraph in which they are anchored. When the value is true floating shapes will be exported as inline tags, placed within the paragraph where they are anchored. This value is ignored when ExportDocumentStructure is false.
+    public func getExportFloatingShapesAsInlineTag() -> Bool? {
+        return self.exportFloatingShapesAsInlineTag;
     }
 }

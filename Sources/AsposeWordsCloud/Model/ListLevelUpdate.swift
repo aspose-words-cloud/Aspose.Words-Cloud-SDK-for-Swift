@@ -460,13 +460,13 @@ public class ListLevelUpdate : Codable, WordsApiModel {
     public func validate() throws {
     }
 
-    // Sets startAt. Gets or sets the starting number for this list level. Default value is 1.
+    // Sets startAt. Gets or sets the starting number for this list level. The default value is 1.
     public func setStartAt(startAt : Int?) -> ListLevelUpdate {
         self.startAt = startAt;
         return self;
     }
 
-    // Gets startAt. Gets or sets the starting number for this list level. Default value is 1.
+    // Gets startAt. Gets or sets the starting number for this list level. The default value is 1.
     public func getStartAt() -> Int? {
         return self.startAt;
     }

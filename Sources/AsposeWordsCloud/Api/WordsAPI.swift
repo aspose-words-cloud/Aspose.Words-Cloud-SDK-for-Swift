@@ -55,7 +55,7 @@ public class WordsAPI : Encryptor {
     }
 
     // Async representation of acceptAllRevisions method
-    // Accepts all revisions in the document.
+    // Accepts all the revisions in the document.
     public func acceptAllRevisions(request : AcceptAllRevisionsRequest, callback : @escaping (_ response : RevisionsModificationResponse?, _ error : Error?) -> ()) {
         do {
             if (self.apiInvoker == nil) {
@@ -89,7 +89,7 @@ public class WordsAPI : Encryptor {
     }
 
     // Sync representation of acceptAllRevisions method
-    // Accepts all revisions in the document.
+    // Accepts all the revisions in the document.
     public func acceptAllRevisions(request : AcceptAllRevisionsRequest) throws -> RevisionsModificationResponse {
         let semaphore = DispatchSemaphore(value: 0);
         var responseObject : RevisionsModificationResponse? = nil;
@@ -109,7 +109,7 @@ public class WordsAPI : Encryptor {
     }
 
     // Async representation of acceptAllRevisionsOnline method
-    // Accepts all revisions in the document.
+    // Accepts all the revisions in the document.
     public func acceptAllRevisionsOnline(request : AcceptAllRevisionsOnlineRequest, callback : @escaping (_ response : AcceptAllRevisionsOnlineResponse?, _ error : Error?) -> ()) {
         do {
             if (self.apiInvoker == nil) {
@@ -143,7 +143,7 @@ public class WordsAPI : Encryptor {
     }
 
     // Sync representation of acceptAllRevisionsOnline method
-    // Accepts all revisions in the document.
+    // Accepts all the revisions in the document.
     public func acceptAllRevisionsOnline(request : AcceptAllRevisionsOnlineRequest) throws -> AcceptAllRevisionsOnlineResponse {
         let semaphore = DispatchSemaphore(value: 0);
         var responseObject : AcceptAllRevisionsOnlineResponse? = nil;
@@ -8930,7 +8930,7 @@ public class WordsAPI : Encryptor {
     }
 
     // Async representation of getPublicKey method
-    // Get assymetric public key.
+    // Get asymmetric public key.
     public func getPublicKey(request : GetPublicKeyRequest, callback : @escaping (_ response : PublicKeyResponse?, _ error : Error?) -> ()) {
         do {
             if (self.apiInvoker == nil) {
@@ -8964,7 +8964,7 @@ public class WordsAPI : Encryptor {
     }
 
     // Sync representation of getPublicKey method
-    // Get assymetric public key.
+    // Get asymmetric public key.
     public func getPublicKey(request : GetPublicKeyRequest) throws -> PublicKeyResponse {
         let semaphore = DispatchSemaphore(value: 0);
         var responseObject : PublicKeyResponse? = nil;

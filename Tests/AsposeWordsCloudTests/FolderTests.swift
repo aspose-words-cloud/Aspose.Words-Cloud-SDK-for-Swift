@@ -53,7 +53,7 @@ class FolderTests: BaseTestContext {
 
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: testDeleteFolder + "/TestDeleteFolder.docx");
 
-      let request = DeleteFolderRequest(path: testDeleteFolder);
+      let request = DeleteFolderRequest(path: testDeleteFolder, recursive: true);
       try super.getApi().deleteFolder(request: request);
     }
 

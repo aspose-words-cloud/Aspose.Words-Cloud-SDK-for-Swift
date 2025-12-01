@@ -367,13 +367,13 @@ public class HtmlFixedSaveOptionsData : FixedPageSaveOptionsData {
         try super.validate();
     }
 
-    // Sets cssClassNamesPrefix. Gets or sets the prefix which is added to all class names in style.css file. Default value is "aw".
+    // Sets cssClassNamesPrefix. Gets or sets the prefix which is added to all class names in style.css file. The default value is "aw".
     public func setCssClassNamesPrefix(cssClassNamesPrefix : String?) -> HtmlFixedSaveOptionsData {
         self.cssClassNamesPrefix = cssClassNamesPrefix;
         return self;
     }
 
-    // Gets cssClassNamesPrefix. Gets or sets the prefix which is added to all class names in style.css file. Default value is "aw".
+    // Gets cssClassNamesPrefix. Gets or sets the prefix which is added to all class names in style.css file. The default value is "aw".
     public func getCssClassNamesPrefix() -> String? {
         return self.cssClassNamesPrefix;
     }
@@ -451,13 +451,13 @@ public class HtmlFixedSaveOptionsData : FixedPageSaveOptionsData {
     }
 
 
-    // Sets idPrefix. Gets or sets a prefix that is prepended to all generated element IDs in the output document. Default value is null and no prefix is prepended. If the prefix is specified, it can contain only letters, digits, underscores, and hyphens, and must start with a letter.
+    // Sets idPrefix. Gets or sets a prefix that is prepended to all generated element IDs in the output document. The default value is null and no prefix is prepended. If the prefix is specified, it can contain only letters, digits, underscores, and hyphens, and must start with a letter.
     public func setIdPrefix(idPrefix : String?) -> HtmlFixedSaveOptionsData {
         self.idPrefix = idPrefix;
         return self;
     }
 
-    // Gets idPrefix. Gets or sets a prefix that is prepended to all generated element IDs in the output document. Default value is null and no prefix is prepended. If the prefix is specified, it can contain only letters, digits, underscores, and hyphens, and must start with a letter.
+    // Gets idPrefix. Gets or sets a prefix that is prepended to all generated element IDs in the output document. The default value is null and no prefix is prepended. If the prefix is specified, it can contain only letters, digits, underscores, and hyphens, and must start with a letter.
     public func getIdPrefix() -> String? {
         return self.idPrefix;
     }
@@ -475,13 +475,13 @@ public class HtmlFixedSaveOptionsData : FixedPageSaveOptionsData {
     }
 
 
-    // Sets pageMargins. Gets or sets the margin around pages in HTML document. The margins value is measured in points and should be equal to or greater than 0. Default value is 10 points. Depends on the value of PageHorizontalAlignment property: Defines top, bottom and left page margins if the value is Left. Defines top, bottom and right page margins if the value is Right. Defines top and bottom page margins if the value is Center.
+    // Sets pageMargins. Gets or sets the margin around pages in HTML document. The margins value is measured in points and should be equal to or greater than 0. The default value is 10 points. Depends on the value of PageHorizontalAlignment property: Defines top, bottom and left page margins if the value is Left. Defines top, bottom and right page margins if the value is Right. Defines top and bottom page margins if the value is Center.
     public func setPageMargins(pageMargins : Double?) -> HtmlFixedSaveOptionsData {
         self.pageMargins = pageMargins;
         return self;
     }
 
-    // Gets pageMargins. Gets or sets the margin around pages in HTML document. The margins value is measured in points and should be equal to or greater than 0. Default value is 10 points. Depends on the value of PageHorizontalAlignment property: Defines top, bottom and left page margins if the value is Left. Defines top, bottom and right page margins if the value is Right. Defines top and bottom page margins if the value is Center.
+    // Gets pageMargins. Gets or sets the margin around pages in HTML document. The margins value is measured in points and should be equal to or greater than 0. The default value is 10 points. Depends on the value of PageHorizontalAlignment property: Defines top, bottom and left page margins if the value is Left. Defines top, bottom and right page margins if the value is Right. Defines top and bottom page margins if the value is Center.
     public func getPageMargins() -> Double? {
         return self.pageMargins;
     }

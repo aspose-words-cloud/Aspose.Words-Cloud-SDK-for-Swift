@@ -208,13 +208,13 @@ public class Signature : Codable, WordsApiModel {
     }
 
 
-    // Sets issuerName. Gets or sets the subject distinguished name of the certificate isuuer.
+    // Sets issuerName. Gets or sets the subject distinguished name of the certificate issuer.
     public func setIssuerName(issuerName : String?) -> Signature {
         self.issuerName = issuerName;
         return self;
     }
 
-    // Gets issuerName. Gets or sets the subject distinguished name of the certificate isuuer.
+    // Gets issuerName. Gets or sets the subject distinguished name of the certificate issuer.
     public func getIssuerName() -> String? {
         return self.issuerName;
     }

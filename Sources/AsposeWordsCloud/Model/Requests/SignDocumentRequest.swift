@@ -73,7 +73,7 @@ public class SignDocumentRequest : WordsApiRequest {
         return self.name;
     }
 
-    // certifate file path.
+    // certificate file path.
     public func getCertificatePath() -> String {
         return self.certificatePath;
     }
