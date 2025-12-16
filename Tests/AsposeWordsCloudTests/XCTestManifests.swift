@@ -34,7 +34,6 @@ public func allTests() -> [XCTestCaseEntry] {
         testCase(BookmarkTests.allTests),
         testCase(CompatibilityTests.allTests),
         testCase(AppendDocumentTests.allTests),
-        testCase(ClassificationTests.allTests),
         testCase(CommentTests.allTests),
         testCase(CompareDocumentTests.allTests),
         testCase(CompressDocumentTests.allTests),

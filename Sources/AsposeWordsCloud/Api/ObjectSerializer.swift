@@ -62,8 +62,6 @@ class ObjectSerializer {
         "BorderResponse, _": BorderResponse.self,
         "BordersCollection, _": BordersCollection.self,
         "BordersResponse, _": BordersResponse.self,
-        "ClassificationResponse, _": ClassificationResponse.self,
-        "ClassificationResult, _": ClassificationResult.self,
         "Comment, _": Comment.self,
         "CommentInsert, _": CommentInsert.self,
         "CommentLink, _": CommentLink.self,
