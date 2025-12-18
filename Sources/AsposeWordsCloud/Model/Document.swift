@@ -135,6 +135,18 @@ public class Document : Codable, WordsApiModel {
         }
     }
 
+    // Field of fileSize. Represents Words document DTO.
+    private var _fileSize : Int? = nil;
+
+    public var fileSize : Int? {
+        get {
+            return self._fileSize;
+        }
+        set {
+            self._fileSize = newValue;
+        }
+    }
+
     // Field of isEncrypted. Represents Words document DTO.
     private var _isEncrypted : Bool? = nil;
 
@@ -175,6 +187,7 @@ public class Document : Codable, WordsApiModel {
         case links = "Links";
         case documentProperties = "DocumentProperties";
         case fileName = "FileName";
+        case fileSize = "FileSize";
         case isEncrypted = "IsEncrypted";
         case isSigned = "IsSigned";
         case sourceFormat = "SourceFormat";
@@ -201,6 +214,7 @@ public class Document : Codable, WordsApiModel {
         }
 
         self.fileName = json["FileName"] as? String;
+        self.fileSize = json["FileSize"] as? Int;
         self.isEncrypted = json["IsEncrypted"] as? Bool;
         self.isSigned = json["IsSigned"] as? Bool;
         if let raw_sourceFormat = json["SourceFormat"] as? String {
@@ -214,6 +228,7 @@ public class Document : Codable, WordsApiModel {
         self.links = try container.decodeIfPresent([Link].self, forKey: .links);
         self.documentProperties = try container.decodeIfPresent(DocumentProperties.self, forKey: .documentProperties);
         self.fileName = try container.decodeIfPresent(String.self, forKey: .fileName);
+        self.fileSize = try container.decodeIfPresent(Int.self, forKey: .fileSize);
         self.isEncrypted = try container.decodeIfPresent(Bool.self, forKey: .isEncrypted);
         self.isSigned = try container.decodeIfPresent(Bool.self, forKey: .isSigned);
         self.sourceFormat = try container.decodeIfPresent(SourceFormat.self, forKey: .sourceFormat);
@@ -229,6 +244,9 @@ public class Document : Codable, WordsApiModel {
         }
         if (self.fileName != nil) {
             try container.encode(self.fileName, forKey: .fileName);
+        }
+        if (self.fileSize != nil) {
+            try container.encode(self.fileSize, forKey: .fileSize);
         }
         if (self.isEncrypted != nil) {
             try container.encode(self.isEncrypted, forKey: .isEncrypted);
@@ -299,6 +317,18 @@ public class Document : Codable, WordsApiModel {
     // Gets fileName. Gets or sets the name of the file.
     public func getFileName() -> String? {
         return self.fileName;
+    }
+
+
+    // Sets fileSize. Gets or sets the file size.
+    public func setFileSize(fileSize : Int?) -> Document {
+        self.fileSize = fileSize;
+        return self;
+    }
+
+    // Gets fileSize. Gets or sets the file size.
+    public func getFileSize() -> Int? {
+        return self.fileSize;
     }
 
 
