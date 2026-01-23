@@ -36,6 +36,7 @@ public class CompareDocumentOnlineRequest : WordsApiRequest {
     private let encryptedPassword : String?;
     private let openTypeSupport : Bool?;
     private let destFileName : String?;
+    private let fontsLocation : String?;
 
     private enum CodingKeys: String, CodingKey {
         case document;
@@ -45,11 +46,12 @@ public class CompareDocumentOnlineRequest : WordsApiRequest {
         case encryptedPassword;
         case openTypeSupport;
         case destFileName;
+        case fontsLocation;
         case invalidCodingKey;
     }
 
     // Initializes a new instance of the CompareDocumentOnlineRequest class.
-    public init(document : InputStream, compareData : CompareData, loadEncoding : String? = nil, password : String? = nil, encryptedPassword : String? = nil, openTypeSupport : Bool? = nil, destFileName : String? = nil) {
+    public init(document : InputStream, compareData : CompareData, loadEncoding : String? = nil, password : String? = nil, encryptedPassword : String? = nil, openTypeSupport : Bool? = nil, destFileName : String? = nil, fontsLocation : String? = nil) {
         self.document = document;
         self.compareData = compareData;
         self.loadEncoding = loadEncoding;
@@ -57,6 +59,7 @@ public class CompareDocumentOnlineRequest : WordsApiRequest {
         self.encryptedPassword = encryptedPassword;
         self.openTypeSupport = openTypeSupport;
         self.destFileName = destFileName;
+        self.fontsLocation = fontsLocation;
     }
 
     // The document.
@@ -92,6 +95,11 @@ public class CompareDocumentOnlineRequest : WordsApiRequest {
     // Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
     public func getDestFileName() -> String? {
         return self.destFileName;
+    }
+
+    // Folder in filestorage with custom fonts.
+    public func getFontsLocation() -> String? {
+        return self.fontsLocation;
     }
 
     // Creates the api request data
@@ -157,6 +165,18 @@ public class CompareDocumentOnlineRequest : WordsApiRequest {
 
          #else
                      queryItems.append(URLQueryItem(name: "destFileName", value: try ObjectSerializer.serializeToString(value: self.getDestFileName()!)));
+
+         #endif        
+             }
+
+
+             if (self.getFontsLocation() != nil) {
+
+         #if os(Linux) 
+                     queryItems.append(URLQueryItem(name: "fontsLocation", value: try ObjectSerializer.serializeToString(value: self.getFontsLocation()!)));
+
+         #else
+                     queryItems.append(URLQueryItem(name: "fontsLocation", value: try ObjectSerializer.serializeToString(value: self.getFontsLocation()!)));
 
          #endif        
              }
