@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="CompareDocumentRequest.swift">
- *   Copyright (c) 2025 Aspose.Words for Cloud
+ *   Copyright (c) 2026 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -38,6 +38,7 @@ public class CompareDocumentRequest : WordsApiRequest {
     private let encryptedPassword : String?;
     private let openTypeSupport : Bool?;
     private let destFileName : String?;
+    private let fontsLocation : String?;
 
     private enum CodingKeys: String, CodingKey {
         case name;
@@ -49,11 +50,12 @@ public class CompareDocumentRequest : WordsApiRequest {
         case encryptedPassword;
         case openTypeSupport;
         case destFileName;
+        case fontsLocation;
         case invalidCodingKey;
     }
 
     // Initializes a new instance of the CompareDocumentRequest class.
-    public init(name : String, compareData : CompareData, folder : String? = nil, storage : String? = nil, loadEncoding : String? = nil, password : String? = nil, encryptedPassword : String? = nil, openTypeSupport : Bool? = nil, destFileName : String? = nil) {
+    public init(name : String, compareData : CompareData, folder : String? = nil, storage : String? = nil, loadEncoding : String? = nil, password : String? = nil, encryptedPassword : String? = nil, openTypeSupport : Bool? = nil, destFileName : String? = nil, fontsLocation : String? = nil) {
         self.name = name;
         self.compareData = compareData;
         self.folder = folder;
@@ -63,6 +65,7 @@ public class CompareDocumentRequest : WordsApiRequest {
         self.encryptedPassword = encryptedPassword;
         self.openTypeSupport = openTypeSupport;
         self.destFileName = destFileName;
+        self.fontsLocation = fontsLocation;
     }
 
     // The filename of the input document.
@@ -108,6 +111,11 @@ public class CompareDocumentRequest : WordsApiRequest {
     // Result path of the document after the operation. If this parameter is omitted then result of the operation will be saved as the source document.
     public func getDestFileName() -> String? {
         return self.destFileName;
+    }
+
+    // Folder in filestorage with custom fonts.
+    public func getFontsLocation() -> String? {
+        return self.fontsLocation;
     }
 
     // Creates the api request data
@@ -199,6 +207,18 @@ public class CompareDocumentRequest : WordsApiRequest {
 
          #else
                      queryItems.append(URLQueryItem(name: "destFileName", value: try ObjectSerializer.serializeToString(value: self.getDestFileName()!)));
+
+         #endif        
+             }
+
+
+             if (self.getFontsLocation() != nil) {
+
+         #if os(Linux) 
+                     queryItems.append(URLQueryItem(name: "fontsLocation", value: try ObjectSerializer.serializeToString(value: self.getFontsLocation()!)));
+
+         #else
+                     queryItems.append(URLQueryItem(name: "fontsLocation", value: try ObjectSerializer.serializeToString(value: self.getFontsLocation()!)));
 
          #endif        
              }

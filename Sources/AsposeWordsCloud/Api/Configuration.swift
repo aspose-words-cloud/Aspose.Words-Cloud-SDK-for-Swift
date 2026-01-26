@@ -1,7 +1,7 @@
 /*
  * --------------------------------------------------------------------------------
  * <copyright company="Aspose" file="Configuration.swift">
- *   Copyright (c) 2025 Aspose.Words for Cloud
+ *   Copyright (c) 2026 Aspose.Words for Cloud
  * </copyright>
  * <summary>
  *   Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -187,6 +187,6 @@ public class Configuration : Codable {
 
     // Returns SDK version for using in statistics headers
     public func getSdkVersion() -> String {
-        return "25.12";
+        return "26.1";
     }
 }
