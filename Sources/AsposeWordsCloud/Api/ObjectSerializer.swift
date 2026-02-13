@@ -84,6 +84,7 @@ class ObjectSerializer {
         "CustomXmlPartsResponse, _": CustomXmlPartsResponse.self,
         "CustomXmlPartUpdate, _": CustomXmlPartUpdate.self,
         "DigitalSignatureDetails, _": DigitalSignatureDetails.self,
+        "DoclingSaveOptionsData, _": DoclingSaveOptionsData.self,
         "DocmSaveOptionsData, _": DocmSaveOptionsData.self,
         "DocSaveOptionsData, _": DocSaveOptionsData.self,
         "Document, _": Document.self,
