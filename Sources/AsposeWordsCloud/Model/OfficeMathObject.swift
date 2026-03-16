@@ -153,8 +153,11 @@ public class OfficeMathObject : OfficeMathLink {
         // Enum value "subSuperscript"
         case subSuperscript = "SubSuperscript"
 
-        // Enum value "supercript"
-        case supercript = "Supercript"
+        // Enum value "superscript"
+        case superscript = "Superscript"
+
+        // Enum value "_none"
+        case _none = "None"
     }
 
     // Field of content. DTO container with an OfficeMath object.
