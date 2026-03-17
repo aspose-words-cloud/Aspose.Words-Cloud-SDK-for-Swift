@@ -11,7 +11,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/allegro/swift-junit.git", from: "1.0.0"),
-        .package(url: "https://github.com/aspose-words-cloud/aspose-words-cloud-swift.git", .branch("release"))
+        .package(url: "https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift.git", .branch("release"))
     ],
     targets: [
         .target(

@@ -422,7 +422,7 @@ Add link to this repository as dependency to your Package.swift:
 
 dependencies: [
     // Dependencies declare other packages that this package depends on.
-    .package(url: "https://github.com/aspose-words-cloud/aspose-words-cloud-swift.git", from: "26.3")
+    .package(url: "https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift.git", from: "26.3")
 ],
 targets: [
     // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -440,7 +440,7 @@ targets: [
 Add link to git repository as dependency to your Podfile:
 
 ```ruby
-pod 'AsposeWordsCloud', :git => 'https://github.com/aspose-words-cloud/aspose-words-cloud-swift.git', :tag => '26.3'
+pod 'AsposeWordsCloud', :git => 'https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift.git', :tag => '26.3'
 ```
 
 ## Getting Started
@@ -466,7 +466,7 @@ Please put your credentials into "Settings/servercreds.json" for run tests.
 
 ## Licensing
 
-All Aspose.Words Cloud SDKs, helper scripts and templates are licensed under [MIT License](https://github.com/aspose-words-cloud/aspose-words-cloud-swift/blob/master/LICENSE). 
+All Aspose.Words Cloud SDKs, helper scripts and templates are licensed under [MIT License](https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift/blob/master/LICENSE). 
 
 ## Contact Us
 Your feedback is very important to us. Please feel free to contact us using our [Support Forums](https://forum.aspose.cloud/c/words).
