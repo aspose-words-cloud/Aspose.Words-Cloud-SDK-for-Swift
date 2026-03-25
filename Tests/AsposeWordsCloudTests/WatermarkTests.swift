@@ -55,7 +55,7 @@ class WatermarkTests: BaseTestContext {
       let requestWatermarkData = WatermarkDataText()
         .setText(text: "watermark text");
       let request = InsertWatermarkRequest(name: remoteFileName, watermarkData: requestWatermarkData, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().insertWatermark(request: request);
+       let actual = try super.getApi().insertWatermark(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
     }
 
@@ -65,7 +65,7 @@ class WatermarkTests: BaseTestContext {
       let requestWatermarkData = WatermarkDataText()
         .setText(text: "watermark text");
       let request = InsertWatermarkOnlineRequest(document: requestDocument, watermarkData: requestWatermarkData);
-      _ = try super.getApi().insertWatermarkOnline(request: request);
+       _ = try super.getApi().insertWatermarkOnline(request: request);
     }
 
     // Test for adding watermark text.
@@ -80,7 +80,7 @@ class WatermarkTests: BaseTestContext {
       let requestWatermarkData = WatermarkDataImage()
         .setImage(image: requestWatermarkDataImage);
       let request = InsertWatermarkRequest(name: remoteFileName, watermarkData: requestWatermarkData, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().insertWatermark(request: request);
+       let actual = try super.getApi().insertWatermark(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
     }
 
@@ -92,7 +92,7 @@ class WatermarkTests: BaseTestContext {
       let requestWatermarkData = WatermarkDataImage()
         .setImage(image: requestWatermarkDataImage);
       let request = InsertWatermarkOnlineRequest(document: requestDocument, watermarkData: requestWatermarkData);
-      _ = try super.getApi().insertWatermarkOnline(request: request);
+       _ = try super.getApi().insertWatermarkOnline(request: request);
     }
 
     // Test for adding watermark image.
@@ -104,7 +104,7 @@ class WatermarkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/aspose-cloud.png", isDirectory: false), path: remoteImagePath);
 
       let request = InsertWatermarkImageRequest(name: remoteFileName, imageFile: nil, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName, image: remoteImagePath);
-      let actual = try super.getApi().insertWatermarkImage(request: request);
+       let actual = try super.getApi().insertWatermarkImage(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestInsertWatermarkImage.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestInsertWatermarkImage.docx"); return; }
     }
@@ -114,7 +114,7 @@ class WatermarkTests: BaseTestContext {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let requestImageFile = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent("Common/aspose-cloud.png", isDirectory: false))!;
       let request = InsertWatermarkImageOnlineRequest(document: requestDocument, imageFile: requestImageFile);
-      _ = try super.getApi().insertWatermarkImageOnline(request: request);
+       _ = try super.getApi().insertWatermarkImageOnline(request: request);
     }
 
     // Test for adding watermark text.
@@ -127,7 +127,7 @@ class WatermarkTests: BaseTestContext {
         .setRotationAngle(rotationAngle: 90.0)
         .setText(text: "This is the text");
       let request = InsertWatermarkTextRequest(name: remoteFileName, watermarkText: requestWatermarkText, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().insertWatermarkText(request: request);
+       let actual = try super.getApi().insertWatermarkText(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestInsertWatermarkText.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestInsertWatermarkText.docx"); return; }
     }
@@ -139,7 +139,7 @@ class WatermarkTests: BaseTestContext {
         .setRotationAngle(rotationAngle: 90)
         .setText(text: "This is the text");
       let request = InsertWatermarkTextOnlineRequest(document: requestDocument, watermarkText: requestWatermarkText);
-      _ = try super.getApi().insertWatermarkTextOnline(request: request);
+       _ = try super.getApi().insertWatermarkTextOnline(request: request);
     }
 
     // Test for deleting watermark.
@@ -149,7 +149,7 @@ class WatermarkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteWatermarkRequest(name: remoteFileName, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().deleteWatermark(request: request);
+       let actual = try super.getApi().deleteWatermark(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestDeleteWatermark.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestDeleteWatermark.docx"); return; }
     }
@@ -158,6 +158,6 @@ class WatermarkTests: BaseTestContext {
     func testDeleteWatermarkOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteWatermarkOnlineRequest(document: requestDocument);
-      _ = try super.getApi().deleteWatermarkOnline(request: request);
+       _ = try super.getApi().deleteWatermarkOnline(request: request);
     }
 }

@@ -46,7 +46,7 @@ class ExecuteMailMergeTests: BaseTestContext {
       let requestTemplate = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false))!;
       let requestData = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDataFile, isDirectory: false))!;
       let request = ExecuteMailMergeOnlineRequest(template: requestTemplate, data: requestData, withRegions: true);
-      _ = try super.getApi().executeMailMergeOnline(request: request);
+       _ = try super.getApi().executeMailMergeOnline(request: request);
     }
 
     // Test for executing mail merge.
@@ -58,7 +58,7 @@ class ExecuteMailMergeTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = ExecuteMailMergeRequest(name: remoteFileName, data: localDataFile, folder: remoteDataFolder, withRegions: true, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().executeMailMerge(request: request);
+       let actual = try super.getApi().executeMailMerge(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestExecuteMailMerge.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestExecuteMailMerge.docx"); return; }
     }

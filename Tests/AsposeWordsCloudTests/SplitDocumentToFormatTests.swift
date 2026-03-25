@@ -45,7 +45,7 @@ class SplitDocumentToFormatTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = SplitDocumentRequest(name: remoteFileName, format: "text", folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/TestSplitDocument.text", from: 1, to: 2);
-      let actual = try super.getApi().splitDocument(request: request);
+       let actual = try super.getApi().splitDocument(request: request);
       if (!(actual.getSplitResult() != nil)) { XCTFail("actual.getSplitResult() != nil"); return; }
       if (!(actual.getSplitResult()!.getPages() != nil)) { XCTFail("actual.getSplitResult()!.getPages() != nil"); return; }
       if (!(actual.getSplitResult()!.getPages()?.count == 2)) { XCTFail("actual.getSplitResult()!.getPages()?.count == 2"); return; }
@@ -55,6 +55,6 @@ class SplitDocumentToFormatTests: BaseTestContext {
     func testSplitDocumentOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = SplitDocumentOnlineRequest(document: requestDocument, format: "text", destFileName: BaseTestContext.getRemoteTestOut() + "/TestSplitDocument.text", from: 1, to: 2);
-      _ = try super.getApi().splitDocumentOnline(request: request);
+       _ = try super.getApi().splitDocumentOnline(request: request);
     }
 }

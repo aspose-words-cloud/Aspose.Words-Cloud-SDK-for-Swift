@@ -37,6 +37,6 @@ class InfoTests: BaseTestContext {
     // Test for getting api info.
     func testGetInfo() throws {
       let request = GetInfoRequest();
-      _ = try super.getApi().getInfo(request: request);
+       _ = try super.getApi().getInfo(request: request);
     }
 }

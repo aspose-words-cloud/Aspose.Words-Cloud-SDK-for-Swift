@@ -760,6 +760,69 @@ public class WordsAPI : Encryptor {
         return responseObject!;
     }
 
+    // Async representation of convertDocumentJob method
+    // Converts a document on a local drive to the specified format.
+    public func convertDocumentJob(request : ConvertDocumentJobRequest, callback : @escaping (_ response : JobHandler< Data >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< Data >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of convertDocumentJob method
+    // Converts a document on a local drive to the specified format.
+    public func convertDocumentJob(request : ConvertDocumentJobRequest) throws -> JobHandler< Data > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< Data >? = nil;
+        var responseError : Error? = nil;
+        self.convertDocumentJob(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
     // Async representation of copyFile method
     // Copy file.
     public func copyFile(request : CopyFileRequest, callback : @escaping (_ error : Error?) -> ()) {

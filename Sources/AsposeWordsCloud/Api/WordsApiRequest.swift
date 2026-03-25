@@ -31,4 +31,5 @@ import Foundation
 public protocol WordsApiRequest {
     func createApiRequestData(apiInvoker : ApiInvoker, configuration : Configuration) throws -> WordsApiRequestData;
     func deserializeResponse(data : Data, headers : [String: String]) throws -> Any?;
+    func getOriginalRequest() -> WordsApiRequest;
 }

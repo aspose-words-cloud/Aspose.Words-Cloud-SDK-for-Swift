@@ -48,7 +48,7 @@ class BuildReportTests: BaseTestContext {
         .setDataSourceName(dataSourceName: "persons")
         .setDataSourceType(dataSourceType: ReportEngineSettings.DataSourceType.json);
       let request = BuildReportOnlineRequest(template: requestTemplate, data: localDataFile, reportEngineSettings: requestReportEngineSettings);
-      _ = try super.getApi().buildReportOnline(request: request);
+       _ = try super.getApi().buildReportOnline(request: request);
     }
 
     // Test for build report.
@@ -67,7 +67,7 @@ class BuildReportTests: BaseTestContext {
         .setDataSourceType(dataSourceType: ReportEngineSettings.DataSourceType.json)
         .setReportBuildOptions(reportBuildOptions: requestReportEngineSettingsReportBuildOptions);
       let request = BuildReportRequest(name: remoteFileName, data: localDataFile, reportEngineSettings: requestReportEngineSettings, folder: remoteDataFolder);
-      let actual = try super.getApi().buildReport(request: request);
+       let actual = try super.getApi().buildReport(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestBuildReport.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestBuildReport.docx"); return; }
     }

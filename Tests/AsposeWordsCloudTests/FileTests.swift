@@ -47,7 +47,7 @@ class FileTests: BaseTestContext {
 
       let requestFileContent = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = UploadFileRequest(fileContent: requestFileContent, path: remoteDataFolder + "/" + remoteFileName);
-      let actual = try super.getApi().uploadFile(request: request);
+       let actual = try super.getApi().uploadFile(request: request);
       if (!(actual.getUploaded() != nil)) { XCTFail("actual.getUploaded() != nil"); return; }
       if (!(actual.getUploaded()?.count == 1)) { XCTFail("actual.getUploaded()?.count == 1"); return; }
       if (!(actual.getUploaded()![0] == "TestUploadFile.docx")) { XCTFail("actual.getUploaded()![0] == " + "TestUploadFile.docx"); return; }
@@ -60,7 +60,7 @@ class FileTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = CopyFileRequest(destPath: remoteDataFolder + "/TestCopyFileDest.docx", srcPath: remoteDataFolder + "/" + remoteFileName);
-      try super.getApi().copyFile(request: request);
+       try super.getApi().copyFile(request: request);
     }
 
     // Test for move file.
@@ -70,7 +70,7 @@ class FileTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = MoveFileRequest(destPath: BaseTestContext.getRemoteTestOut() + "/TestMoveFileDest_" + UUID().uuidString + ".docx", srcPath: remoteDataFolder + "/" + remoteFileName);
-      try super.getApi().moveFile(request: request);
+       try super.getApi().moveFile(request: request);
     }
 
     // Test for delete file.
@@ -80,7 +80,7 @@ class FileTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFileRequest(path: remoteDataFolder + "/" + remoteFileName);
-      try super.getApi().deleteFile(request: request);
+       try super.getApi().deleteFile(request: request);
     }
 
     // Test for download file.
@@ -90,6 +90,6 @@ class FileTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DownloadFileRequest(path: remoteDataFolder + "/" + remoteFileName);
-      _ = try super.getApi().downloadFile(request: request);
+       _ = try super.getApi().downloadFile(request: request);
     }
 }

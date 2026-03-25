@@ -270,4 +270,8 @@ public class InsertStyleRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return try ObjectSerializer.deserialize(type: StyleResponse.self, from: data);
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

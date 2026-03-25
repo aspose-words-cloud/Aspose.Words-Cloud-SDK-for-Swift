@@ -47,7 +47,7 @@ class CompatibilityTests: BaseTestContext {
       let requestOptions = OptimizationOptions()
         .setMsWordVersion(msWordVersion: OptimizationOptions.MsWordVersion.word2002);
       let request = OptimizeDocumentRequest(name: remoteFileName, options: requestOptions, folder: remoteDataFolder);
-      try super.getApi().optimizeDocument(request: request);
+       try super.getApi().optimizeDocument(request: request);
     }
 
     // Test for optimize document to specific MS Word version.
@@ -56,6 +56,6 @@ class CompatibilityTests: BaseTestContext {
       let requestOptions = OptimizationOptions()
         .setMsWordVersion(msWordVersion: OptimizationOptions.MsWordVersion.word2002);
       let request = OptimizeDocumentOnlineRequest(document: requestDocument, options: requestOptions);
-      _ = try super.getApi().optimizeDocumentOnline(request: request);
+       _ = try super.getApi().optimizeDocumentOnline(request: request);
     }
 }

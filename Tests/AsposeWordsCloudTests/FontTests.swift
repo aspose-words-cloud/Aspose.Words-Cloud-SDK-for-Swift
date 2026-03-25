@@ -38,13 +38,13 @@ class FontTests: BaseTestContext {
     // Test for reseting cache.
     func testResetCache() throws {
       let request = ResetCacheRequest();
-      try super.getApi().resetCache(request: request);
+       try super.getApi().resetCache(request: request);
     }
 
     // Test for GetAvailableFonts resource.
     func testGetAvailableFonts() throws {
       let request = GetAvailableFontsRequest();
-      let actual = try super.getApi().getAvailableFonts(request: request);
+       let actual = try super.getApi().getAvailableFonts(request: request);
       if (!(actual.getSystemFonts() != nil)) { XCTFail("actual.getSystemFonts() != nil"); return; }
     }
 }

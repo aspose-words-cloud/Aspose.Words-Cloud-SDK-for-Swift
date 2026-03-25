@@ -53,7 +53,7 @@ class SignatureTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFolder + "/" + signedDocument, isDirectory: false), path: remoteFolder + "/" + remoteName);
 
       let request = GetSignaturesRequest(name: remoteName, folder: remoteFolder);
-      let actual = try super.getApi().getSignatures(request: request);
+       let actual = try super.getApi().getSignatures(request: request);
       if (!(actual.getSignatures() != nil)) { XCTFail("actual.getSignatures() != nil"); return; }
       if (!(actual.getSignatures()?.count == 1)) { XCTFail("actual.getSignatures()?.count == 1"); return; }
     }
@@ -62,7 +62,7 @@ class SignatureTests: BaseTestContext {
     func testGetSignaturesOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFolder + "/" + signedDocument, isDirectory: false))!;
       let request = GetSignaturesOnlineRequest(document: requestDocument);
-      let actual = try super.getApi().getSignaturesOnline(request: request);
+       let actual = try super.getApi().getSignaturesOnline(request: request);
       if (!(actual.getSignatures() != nil)) { XCTFail("actual.getSignatures() != nil"); return; }
       if (!(actual.getSignatures()?.count == 1)) { XCTFail("actual.getSignatures()?.count == 1"); return; }
     }
@@ -74,7 +74,7 @@ class SignatureTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFolder + "/" + signedDocument, isDirectory: false), path: remoteFolder + "/" + remoteName);
 
       let request = RemoveAllSignaturesRequest(name: remoteName, folder: remoteFolder);
-      let actual = try super.getApi().removeAllSignatures(request: request);
+       let actual = try super.getApi().removeAllSignatures(request: request);
       if (!(actual.getSignatures() != nil)) { XCTFail("actual.getSignatures() != nil"); return; }
       if (!(actual.getSignatures()?.count == 0)) { XCTFail("actual.getSignatures()?.count == 0"); return; }
     }
@@ -83,7 +83,7 @@ class SignatureTests: BaseTestContext {
     func testRemoveAllSignaturesOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFolder + "/" + signedDocument, isDirectory: false))!;
       let request = RemoveAllSignaturesOnlineRequest(document: requestDocument);
-      let actual = try super.getApi().removeAllSignaturesOnline(request: request);
+       let actual = try super.getApi().removeAllSignaturesOnline(request: request);
       if (!(actual.getModel()!.getSignatures() != nil)) { XCTFail("actual.getModel()!.getSignatures() != nil"); return; }
       if (!(actual.getModel()!.getSignatures()?.count == 0)) { XCTFail("actual.getModel()!.getSignatures()?.count == 0"); return; }
     }
@@ -97,7 +97,7 @@ class SignatureTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFolder + "/" + certificateName, isDirectory: false), path: remoteFolder + "/" + remoteCertificateName);
 
       let request = SignDocumentRequest(name: remoteName, certificatePath: remoteFolder + "/" + remoteCertificateName, certificatePassword: certificatePassword, folder: remoteFolder);
-      let actual = try super.getApi().signDocument(request: request);
+       let actual = try super.getApi().signDocument(request: request);
       if (!(actual.getSignatures() != nil)) { XCTFail("actual.getSignatures() != nil"); return; }
       if (!(actual.getSignatures()?.count == 1)) { XCTFail("actual.getSignatures()?.count == 1"); return; }
     }
@@ -110,7 +110,7 @@ class SignatureTests: BaseTestContext {
 
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFolder + "/" + unsignedDocument, isDirectory: false))!;
       let request = SignDocumentOnlineRequest(document: requestDocument, certificatePath: remoteFolder + "/" + remoteCertificateName, certificatePassword: certificatePassword);
-      let actual = try super.getApi().signDocumentOnline(request: request);
+       let actual = try super.getApi().signDocumentOnline(request: request);
       if (!(actual.getModel()!.getSignatures() != nil)) { XCTFail("actual.getModel()!.getSignatures() != nil"); return; }
       if (!(actual.getModel()!.getSignatures()?.count == 1)) { XCTFail("actual.getModel()!.getSignatures()?.count == 1"); return; }
     }
