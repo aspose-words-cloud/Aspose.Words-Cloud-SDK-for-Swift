@@ -56,7 +56,7 @@ class CompareDocumentTests: BaseTestContext {
         .setDateTime(dateTime: ObjectSerializer.customIso8601.date(from: "2015-10-26T00:00:00Z")!)
         .setFileReference(fileReference: requestCompareDataFileReference);
       let request = CompareDocumentRequest(name: remoteName1, compareData: requestCompareData, folder: remoteFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/TestCompareDocumentOut.doc");
-      let actual = try super.getApi().compareDocument(request: request);
+       let actual = try super.getApi().compareDocument(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestCompareDocumentOut.doc")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestCompareDocumentOut.doc"); return; }
     }
@@ -76,7 +76,7 @@ class CompareDocumentTests: BaseTestContext {
         .setDateTime(dateTime: ObjectSerializer.customIso8601.date(from: "2015-10-26T00:00:00Z")!)
         .setFileReference(fileReference: requestCompareDataFileReference);
       let request = CompareDocumentOnlineRequest(document: requestDocument, compareData: requestCompareData, destFileName: BaseTestContext.getRemoteTestOut() + "/TestCompareDocumentOut.doc");
-      _ = try super.getApi().compareDocumentOnline(request: request);
+       _ = try super.getApi().compareDocumentOnline(request: request);
     }
 
     // Test for document comparison online.
@@ -95,7 +95,7 @@ class CompareDocumentTests: BaseTestContext {
         .setDateTime(dateTime: ObjectSerializer.customIso8601.date(from: "2015-10-26T00:00:00Z")!)
         .setFileReference(fileReference: requestCompareDataFileReference);
       let request = CompareDocumentOnlineRequest(document: requestDocument, compareData: requestCompareData, destFileName: BaseTestContext.getRemoteTestOut() + "/TestCompareDocumentOut.doc");
-      _ = try super.getApi().compareDocumentOnline(request: request);
+       _ = try super.getApi().compareDocumentOnline(request: request);
     }
 
     // Test for document comparison with password protection.
@@ -113,7 +113,7 @@ class CompareDocumentTests: BaseTestContext {
         .setDateTime(dateTime: ObjectSerializer.customIso8601.date(from: "2015-10-26T00:00:00Z")!)
         .setFileReference(fileReference: requestCompareDataFileReference);
       let request = CompareDocumentRequest(name: remoteName1, compareData: requestCompareData, folder: remoteFolder, password: "12345", destFileName: BaseTestContext.getRemoteTestOut() + "/TestCompareDocumentOut.docx");
-      let actual = try super.getApi().compareDocument(request: request);
+       let actual = try super.getApi().compareDocument(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestCompareDocumentOut.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestCompareDocumentOut.docx"); return; }
     }

@@ -223,4 +223,8 @@ public class GetBorderRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return try ObjectSerializer.deserialize(type: BorderResponse.self, from: data);
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

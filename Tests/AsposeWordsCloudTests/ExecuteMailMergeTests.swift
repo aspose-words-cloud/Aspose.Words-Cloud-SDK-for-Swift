@@ -32,7 +32,9 @@ import XCTest
 class ExecuteMailMergeTests: BaseTestContext {
     static var allTests = [
         ("testExecuteMailMergeOnline", testExecuteMailMergeOnline),
-        ("testExecuteMailMerge", testExecuteMailMerge)
+        ("testExecuteMailMergeOnlineJob", testExecuteMailMergeOnlineJob),
+        ("testExecuteMailMerge", testExecuteMailMerge),
+        ("testExecuteMailMergeJob", testExecuteMailMergeJob)
     ];
 
     let remoteDataFolder = BaseTestContext.getRemoteTestDataFolder() + "/DocumentActions/MailMerge";
@@ -46,7 +48,19 @@ class ExecuteMailMergeTests: BaseTestContext {
       let requestTemplate = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false))!;
       let requestData = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDataFile, isDirectory: false))!;
       let request = ExecuteMailMergeOnlineRequest(template: requestTemplate, data: requestData, withRegions: true);
-      _ = try super.getApi().executeMailMergeOnline(request: request);
+       _ = try super.getApi().executeMailMergeOnline(request: request);
+    }
+
+    // Test for executing mail merge online job.
+    func testExecuteMailMergeOnlineJob() throws {
+      let localDocumentFile = "SampleExecuteTemplate.docx";
+      let localDataFile = "SampleExecuteTemplateData.txt";
+
+      let requestTemplate = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false))!;
+      let requestData = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDataFile, isDirectory: false))!;
+      let request = ExecuteMailMergeOnlineJobRequest(template: requestTemplate, data: requestData, withRegions: true);
+      let jobHandler = try super.getApi().executeMailMergeOnlineJob(request: request);
+      _ = try jobHandler.waitResult(updateInterval: 3.0);
     }
 
     // Test for executing mail merge.
@@ -58,7 +72,22 @@ class ExecuteMailMergeTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = ExecuteMailMergeRequest(name: remoteFileName, data: localDataFile, folder: remoteDataFolder, withRegions: true, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().executeMailMerge(request: request);
+       let actual = try super.getApi().executeMailMerge(request: request);
+      if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
+      if (!(actual.getDocument()!.getFileName() == "TestExecuteMailMerge.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestExecuteMailMerge.docx"); return; }
+    }
+
+    // Test for executing mail merge job.
+    func testExecuteMailMergeJob() throws {
+      let localDocumentFile = "SampleExecuteTemplate.docx";
+      let remoteFileName = "TestExecuteMailMerge.docx";
+      let localDataFile = try String(contentsOf: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/SampleMailMergeTemplateData.txt", isDirectory: false));
+
+      try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
+
+      let request = ExecuteMailMergeJobRequest(name: remoteFileName, data: localDataFile, folder: remoteDataFolder, withRegions: true, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
+      let jobHandler = try super.getApi().executeMailMergeJob(request: request);
+      let actual = try jobHandler.waitResult(updateInterval: 3.0);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestExecuteMailMerge.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestExecuteMailMerge.docx"); return; }
     }

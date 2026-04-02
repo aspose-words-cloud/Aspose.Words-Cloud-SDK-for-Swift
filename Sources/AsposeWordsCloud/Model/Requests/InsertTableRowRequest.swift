@@ -285,4 +285,8 @@ public class InsertTableRowRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return try ObjectSerializer.deserialize(type: TableRowResponse.self, from: data);
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

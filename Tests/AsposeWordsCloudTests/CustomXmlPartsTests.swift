@@ -55,7 +55,7 @@ class CustomXmlPartsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetCustomXmlPartRequest(name: remoteFileName, customXmlPartIndex: 0, folder: remoteDataFolder);
-      let actual = try super.getApi().getCustomXmlPart(request: request);
+       let actual = try super.getApi().getCustomXmlPart(request: request);
       if (!(actual.getCustomXmlPart() != nil)) { XCTFail("actual.getCustomXmlPart() != nil"); return; }
       if (!(actual.getCustomXmlPart()!.getId() == "aspose")) { XCTFail("actual.getCustomXmlPart()!.getId() == " + "aspose"); return; }
       if (!(actual.getCustomXmlPart()!.getData() == "<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>")) { XCTFail("actual.getCustomXmlPart()!.getData() == " + "<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>"); return; }
@@ -65,7 +65,7 @@ class CustomXmlPartsTests: BaseTestContext {
     func testGetCustomXmlPartOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetCustomXmlPartOnlineRequest(document: requestDocument, customXmlPartIndex: 0);
-      let actual = try super.getApi().getCustomXmlPartOnline(request: request);
+       let actual = try super.getApi().getCustomXmlPartOnline(request: request);
       if (!(actual.getCustomXmlPart() != nil)) { XCTFail("actual.getCustomXmlPart() != nil"); return; }
       if (!(actual.getCustomXmlPart()!.getId() == "aspose")) { XCTFail("actual.getCustomXmlPart()!.getId() == " + "aspose"); return; }
       if (!(actual.getCustomXmlPart()!.getData() == "<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>")) { XCTFail("actual.getCustomXmlPart()!.getData() == " + "<Metadata><Author>author1</Author><Initial>initial</Initial><DateTime>2015-01-22T00:00:00</DateTime><Text>text</Text></Metadata>"); return; }
@@ -78,7 +78,7 @@ class CustomXmlPartsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetCustomXmlPartsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getCustomXmlParts(request: request);
+       let actual = try super.getApi().getCustomXmlParts(request: request);
       if (!(actual.getCustomXmlParts() != nil)) { XCTFail("actual.getCustomXmlParts() != nil"); return; }
       if (!(actual.getCustomXmlParts()!.getCustomXmlPartsList() != nil)) { XCTFail("actual.getCustomXmlParts()!.getCustomXmlPartsList() != nil"); return; }
       if (!(actual.getCustomXmlParts()!.getCustomXmlPartsList()?.count == 2)) { XCTFail("actual.getCustomXmlParts()!.getCustomXmlPartsList()?.count == 2"); return; }
@@ -90,7 +90,7 @@ class CustomXmlPartsTests: BaseTestContext {
     func testGetCustomXmlPartsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetCustomXmlPartsOnlineRequest(document: requestDocument);
-      let actual = try super.getApi().getCustomXmlPartsOnline(request: request);
+       let actual = try super.getApi().getCustomXmlPartsOnline(request: request);
       if (!(actual.getCustomXmlParts() != nil)) { XCTFail("actual.getCustomXmlParts() != nil"); return; }
       if (!(actual.getCustomXmlParts()!.getCustomXmlPartsList() != nil)) { XCTFail("actual.getCustomXmlParts()!.getCustomXmlPartsList() != nil"); return; }
       if (!(actual.getCustomXmlParts()!.getCustomXmlPartsList()?.count == 2)) { XCTFail("actual.getCustomXmlParts()!.getCustomXmlPartsList()?.count == 2"); return; }
@@ -108,7 +108,7 @@ class CustomXmlPartsTests: BaseTestContext {
         .setId(id: "hello")
         .setData(data: "<data>Hello world</data>");
       let request = InsertCustomXmlPartRequest(name: remoteFileName, customXmlPart: requestCustomXmlPart as! CustomXmlPartInsert, folder: remoteDataFolder);
-      let actual = try super.getApi().insertCustomXmlPart(request: request);
+       let actual = try super.getApi().insertCustomXmlPart(request: request);
       if (!(actual.getCustomXmlPart() != nil)) { XCTFail("actual.getCustomXmlPart() != nil"); return; }
       if (!(actual.getCustomXmlPart()!.getId() == "hello")) { XCTFail("actual.getCustomXmlPart()!.getId() == " + "hello"); return; }
       if (!(actual.getCustomXmlPart()!.getData() == "<data>Hello world</data>")) { XCTFail("actual.getCustomXmlPart()!.getData() == " + "<data>Hello world</data>"); return; }
@@ -121,7 +121,7 @@ class CustomXmlPartsTests: BaseTestContext {
         .setId(id: "hello")
         .setData(data: "<data>Hello world</data>");
       let request = InsertCustomXmlPartOnlineRequest(document: requestDocument, customXmlPart: requestCustomXmlPart as! CustomXmlPartInsert);
-      let actual = try super.getApi().insertCustomXmlPartOnline(request: request);
+       let actual = try super.getApi().insertCustomXmlPartOnline(request: request);
       if (!(actual.getModel()!.getCustomXmlPart() != nil)) { XCTFail("actual.getModel()!.getCustomXmlPart() != nil"); return; }
       if (!(actual.getModel()!.getCustomXmlPart()!.getId() == "hello")) { XCTFail("actual.getModel()!.getCustomXmlPart()!.getId() == " + "hello"); return; }
       if (!(actual.getModel()!.getCustomXmlPart()!.getData() == "<data>Hello world</data>")) { XCTFail("actual.getModel()!.getCustomXmlPart()!.getData() == " + "<data>Hello world</data>"); return; }
@@ -136,7 +136,7 @@ class CustomXmlPartsTests: BaseTestContext {
       let requestCustomXmlPart = CustomXmlPartUpdate()
         .setData(data: "<data>Hello world</data>");
       let request = UpdateCustomXmlPartRequest(name: remoteFileName, customXmlPartIndex: 0, customXmlPart: requestCustomXmlPart as! CustomXmlPartUpdate, folder: remoteDataFolder);
-      let actual = try super.getApi().updateCustomXmlPart(request: request);
+       let actual = try super.getApi().updateCustomXmlPart(request: request);
       if (!(actual.getCustomXmlPart() != nil)) { XCTFail("actual.getCustomXmlPart() != nil"); return; }
       if (!(actual.getCustomXmlPart()!.getId() == "aspose")) { XCTFail("actual.getCustomXmlPart()!.getId() == " + "aspose"); return; }
       if (!(actual.getCustomXmlPart()!.getData() == "<data>Hello world</data>")) { XCTFail("actual.getCustomXmlPart()!.getData() == " + "<data>Hello world</data>"); return; }
@@ -148,7 +148,7 @@ class CustomXmlPartsTests: BaseTestContext {
       let requestCustomXmlPart = CustomXmlPartUpdate()
         .setData(data: "<data>Hello world</data>");
       let request = UpdateCustomXmlPartOnlineRequest(document: requestDocument, customXmlPartIndex: 0, customXmlPart: requestCustomXmlPart as! CustomXmlPartUpdate);
-      let actual = try super.getApi().updateCustomXmlPartOnline(request: request);
+       let actual = try super.getApi().updateCustomXmlPartOnline(request: request);
       if (!(actual.getModel()!.getCustomXmlPart() != nil)) { XCTFail("actual.getModel()!.getCustomXmlPart() != nil"); return; }
       if (!(actual.getModel()!.getCustomXmlPart()!.getId() == "aspose")) { XCTFail("actual.getModel()!.getCustomXmlPart()!.getId() == " + "aspose"); return; }
       if (!(actual.getModel()!.getCustomXmlPart()!.getData() == "<data>Hello world</data>")) { XCTFail("actual.getModel()!.getCustomXmlPart()!.getData() == " + "<data>Hello world</data>"); return; }
@@ -161,14 +161,14 @@ class CustomXmlPartsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteCustomXmlPartRequest(name: remoteFileName, customXmlPartIndex: 0, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      try super.getApi().deleteCustomXmlPart(request: request);
+       try super.getApi().deleteCustomXmlPart(request: request);
     }
 
     // A test for DeleteCustomXmlPart online.
     func testDeleteCustomXmlPartOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteCustomXmlPartOnlineRequest(document: requestDocument, customXmlPartIndex: 0);
-      _ = try super.getApi().deleteCustomXmlPartOnline(request: request);
+       _ = try super.getApi().deleteCustomXmlPartOnline(request: request);
     }
 
     // A test for DeleteCustomXmlParts.
@@ -178,13 +178,13 @@ class CustomXmlPartsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteCustomXmlPartsRequest(name: remoteFileName, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      try super.getApi().deleteCustomXmlParts(request: request);
+       try super.getApi().deleteCustomXmlParts(request: request);
     }
 
     // A test for DeleteCustomXmlParts online.
     func testDeleteCustomXmlPartsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteCustomXmlPartsOnlineRequest(document: requestDocument);
-      _ = try super.getApi().deleteCustomXmlPartsOnline(request: request);
+       _ = try super.getApi().deleteCustomXmlPartsOnline(request: request);
     }
 }

@@ -32,7 +32,9 @@ import XCTest
 class AppendDocumentTests: BaseTestContext {
     static var allTests = [
         ("testAppendDocument", testAppendDocument),
-        ("testAppendDocumentOnline", testAppendDocumentOnline)
+        ("testAppendDocumentJob", testAppendDocumentJob),
+        ("testAppendDocumentOnline", testAppendDocumentOnline),
+        ("testAppendDocumentOnlineJob", testAppendDocumentOnlineJob)
     ];
 
     let remoteDataFolder = BaseTestContext.getRemoteTestDataFolder() + "/DocumentActions/AppendDocument";
@@ -54,7 +56,29 @@ class AppendDocumentTests: BaseTestContext {
       let requestDocumentList = DocumentEntryList()
         .setDocumentEntries(documentEntries: requestDocumentListDocumentEntries);
       let request = AppendDocumentRequest(name: remoteFileName, documentList: requestDocumentList, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().appendDocument(request: request);
+       let actual = try super.getApi().appendDocument(request: request);
+      if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
+      if (!(actual.getDocument()!.getFileName() == "TestAppendDocument.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestAppendDocument.docx"); return; }
+    }
+
+    // Test for appending document job.
+    func testAppendDocumentJob() throws {
+      let remoteFileName = "TestAppendDocument.docx";
+
+      try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
+
+      let requestDocumentListDocumentEntries0FileReference = FileReference(remoteFilePath: remoteDataFolder + "/" + remoteFileName);
+      let requestDocumentListDocumentEntries0 = DocumentEntry()
+        .setImportFormatMode(importFormatMode: DocumentEntry.ImportFormatMode.keepSourceFormatting)
+        .setFileReference(fileReference: requestDocumentListDocumentEntries0FileReference);
+      let requestDocumentListDocumentEntries = [
+        requestDocumentListDocumentEntries0 as! DocumentEntry
+      ];
+      let requestDocumentList = DocumentEntryList()
+        .setDocumentEntries(documentEntries: requestDocumentListDocumentEntries);
+      let request = AppendDocumentJobRequest(name: remoteFileName, documentList: requestDocumentList, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
+      let jobHandler = try super.getApi().appendDocumentJob(request: request);
+      let actual = try jobHandler.waitResult(updateInterval: 3.0);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestAppendDocument.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestAppendDocument.docx"); return; }
     }
@@ -73,6 +97,24 @@ class AppendDocumentTests: BaseTestContext {
       let requestDocumentList = DocumentEntryList()
         .setDocumentEntries(documentEntries: requestDocumentListDocumentEntries);
       let request = AppendDocumentOnlineRequest(document: requestDocument, documentList: requestDocumentList);
-      _ = try super.getApi().appendDocumentOnline(request: request);
+       _ = try super.getApi().appendDocumentOnline(request: request);
+    }
+
+    // Test for appending document online job.
+    func testAppendDocumentOnlineJob() throws {
+      let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
+      let requestDocumentListDocumentEntries0FileReferenceStream = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
+      let requestDocumentListDocumentEntries0FileReference = FileReference(localFileContent: requestDocumentListDocumentEntries0FileReferenceStream);
+      let requestDocumentListDocumentEntries0 = DocumentEntry()
+        .setImportFormatMode(importFormatMode: DocumentEntry.ImportFormatMode.keepSourceFormatting)
+        .setFileReference(fileReference: requestDocumentListDocumentEntries0FileReference);
+      let requestDocumentListDocumentEntries = [
+        requestDocumentListDocumentEntries0 as! DocumentEntry
+      ];
+      let requestDocumentList = DocumentEntryList()
+        .setDocumentEntries(documentEntries: requestDocumentListDocumentEntries);
+      let request = AppendDocumentOnlineJobRequest(document: requestDocument, documentList: requestDocumentList);
+      let jobHandler = try super.getApi().appendDocumentOnlineJob(request: request);
+      _ = try jobHandler.waitResult(updateInterval: 3.0);
     }
 }

@@ -47,7 +47,7 @@ class CompressDocumentTests: BaseTestContext {
 
       let requestCompressOptions = CompressOptions();
       let request = CompressDocumentRequest(name: remoteName, compressOptions: requestCompressOptions, folder: remoteFolder);
-      let actual = try super.getApi().compressDocument(request: request);
+       let actual = try super.getApi().compressDocument(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
     }
 
@@ -58,6 +58,6 @@ class CompressDocumentTests: BaseTestContext {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFolder + "/" + localName, isDirectory: false))!;
       let requestCompressOptions = CompressOptions();
       let request = CompressDocumentOnlineRequest(document: requestDocument, compressOptions: requestCompressOptions);
-      _ = try super.getApi().compressDocumentOnline(request: request);
+       _ = try super.getApi().compressDocumentOnline(request: request);
     }
 }

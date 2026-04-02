@@ -53,7 +53,7 @@ class TextTests: BaseTestContext {
         .setNewValue(newValue: "Aspose testing")
         .setOldValue(oldValue: "Testing");
       let request = ReplaceTextRequest(name: remoteFileName, replaceText: requestReplaceText, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().replaceText(request: request);
+       let actual = try super.getApi().replaceText(request: request);
       if (!(actual.getMatches() == 3)) { XCTFail("actual.getMatches() == 3"); return; }
     }
 
@@ -69,7 +69,7 @@ class TextTests: BaseTestContext {
         .setNewValue(newValue: "aspose new")
         .setOldValue(oldValue: "aspose");
       let request = ReplaceTextOnlineRequest(document: requestDocument, replaceText: requestReplaceText);
-      _ = try super.getApi().replaceTextOnline(request: request);
+       _ = try super.getApi().replaceTextOnline(request: request);
     }
 
     // Test for searching.
@@ -80,7 +80,7 @@ class TextTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = SearchRequest(name: remoteFileName, pattern: "aspose", folder: remoteDataFolder);
-      let actual = try super.getApi().search(request: request);
+       let actual = try super.getApi().search(request: request);
       if (!(actual.getSearchResults() != nil)) { XCTFail("actual.getSearchResults() != nil"); return; }
       if (!(actual.getSearchResults()!.getResultsList() != nil)) { XCTFail("actual.getSearchResults()!.getResultsList() != nil"); return; }
       if (!(actual.getSearchResults()!.getResultsList()?.count == 23)) { XCTFail("actual.getSearchResults()!.getResultsList()?.count == 23"); return; }
@@ -94,6 +94,6 @@ class TextTests: BaseTestContext {
 
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = SearchOnlineRequest(document: requestDocument, pattern: "aspose");
-      _ = try super.getApi().searchOnline(request: request);
+       _ = try super.getApi().searchOnline(request: request);
     }
 }

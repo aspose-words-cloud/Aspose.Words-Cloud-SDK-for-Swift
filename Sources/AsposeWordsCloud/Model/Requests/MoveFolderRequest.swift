@@ -133,4 +133,8 @@ public class MoveFolderRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return nil;
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

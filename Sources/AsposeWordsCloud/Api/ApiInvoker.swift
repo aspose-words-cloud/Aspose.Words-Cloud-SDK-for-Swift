@@ -162,6 +162,46 @@ public class ApiInvoker {
         });
     }
 
+    public func callJobResult(jobId : String, callback: @escaping (_ response : [ResponseFormParam]?, _ error : Error?) -> ()) {
+        let urlPath = URL(string: self.configuration.getBaseUrl())!.appendingPathComponent("v4.0/words/job");
+        var urlBuilder = URLComponents(url: urlPath, resolvingAgainstBaseURL: false)!;
+        urlBuilder.queryItems = [URLQueryItem(name: "id", value: jobId)];
+
+        let requestData = WordsApiRequestData(url: urlBuilder.url!, method: "GET");
+        self.invoke(apiRequestData: requestData, callback: { response, _, error in
+            if (error != nil) {
+                callback(nil, error);
+            }
+            else {
+                do {
+                    callback(try ObjectSerializer.parseMultipart(data: response!), nil);
+                }
+                catch let deserializeError {
+                    callback(nil, deserializeError);
+                }
+            }
+        });
+    }
+
+    public func callJobResult(jobId : String) throws -> [ResponseFormParam] {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : [ResponseFormParam]? = nil;
+        var responseError : Error? = nil;
+        self.callJobResult(jobId: jobId, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+
+        return responseObject!;
+    }
+
     // Invokes prepared request to the API. Callback returns a response from the API call
     private func invokeRequest(urlRequest : inout URLRequest, accessToken : String?, callback : @escaping (_ response: InvokeResponse) -> ()) {
         // Set access token to request headers

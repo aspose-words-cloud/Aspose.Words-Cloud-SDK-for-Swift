@@ -44,7 +44,7 @@ class FolderTests: BaseTestContext {
     // Test for create folder.
     func testCreateFolder() throws {
       let request = CreateFolderRequest(path: remoteDataFolder + "/TestCreateFolder");
-      try super.getApi().createFolder(request: request);
+       try super.getApi().createFolder(request: request);
     }
 
     // Test for delete folder.
@@ -54,13 +54,13 @@ class FolderTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: testDeleteFolder + "/TestDeleteFolder.docx");
 
       let request = DeleteFolderRequest(path: testDeleteFolder, recursive: true);
-      try super.getApi().deleteFolder(request: request);
+       try super.getApi().deleteFolder(request: request);
     }
 
     // Test for get file list of folder.
     func testGetFilesList() throws {
       let request = GetFilesListRequest(path: remoteDataFolder);
-      let actual = try super.getApi().getFilesList(request: request);
+       let actual = try super.getApi().getFilesList(request: request);
       if (!(actual.getValue() != nil)) { XCTFail("actual.getValue() != nil"); return; }
     }
 
@@ -71,7 +71,7 @@ class FolderTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: folderToCopy + "Src/TestCopyFolderSrc.docx");
 
       let request = CopyFolderRequest(destPath: folderToCopy + "Dest", srcPath: folderToCopy + "Src");
-      try super.getApi().copyFolder(request: request);
+       try super.getApi().copyFolder(request: request);
     }
 
     // Test for move folder.
@@ -79,6 +79,6 @@ class FolderTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/TestMoveFolderSrc/TestMoveFolderSrc.docx");
 
       let request = MoveFolderRequest(destPath: BaseTestContext.getRemoteTestOut() + "/TestMoveFolderDest_" + UUID().uuidString, srcPath: remoteDataFolder + "/TestMoveFolderSrc");
-      try super.getApi().moveFolder(request: request);
+       try super.getApi().moveFolder(request: request);
     }
 }

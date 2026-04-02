@@ -47,7 +47,7 @@ class ExecuteTemplateTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = ExecuteMailMergeRequest(name: remoteFileName, data: localDataFile, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().executeMailMerge(request: request);
+       let actual = try super.getApi().executeMailMerge(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestExecuteTemplate.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestExecuteTemplate.docx"); return; }
     }
@@ -60,6 +60,6 @@ class ExecuteTemplateTests: BaseTestContext {
       let requestTemplate = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false))!;
       let requestData = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDataFile, isDirectory: false))!;
       let request = ExecuteMailMergeOnlineRequest(template: requestTemplate, data: requestData);
-      _ = try super.getApi().executeMailMergeOnline(request: request);
+       _ = try super.getApi().executeMailMergeOnline(request: request);
     }
 }

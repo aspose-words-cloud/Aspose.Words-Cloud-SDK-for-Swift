@@ -66,7 +66,7 @@ class FormFieldTests: BaseTestContext {
         .setStatusText(statusText: "")
         .setCalculateOnExit(calculateOnExit: true);
       let request = UpdateFormFieldRequest(name: remoteFileName, index: 0, formField: requestFormField as! FormFieldTextInput, nodePath: "sections/0", folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().updateFormField(request: request);
+       let actual = try super.getApi().updateFormField(request: request);
       if (!(actual.getFormField() != nil)) { XCTFail("actual.getFormField() != nil"); return; }
       if (!(actual.getFormField()!.getName() == "FullName")) { XCTFail("actual.getFormField()!.getName() == " + "FullName"); return; }
       if (!(actual.getFormField()!.getStatusText() == "")) { XCTFail("actual.getFormField()!.getStatusText() == " + ""); return; }
@@ -84,7 +84,7 @@ class FormFieldTests: BaseTestContext {
         .setStatusText(statusText: "")
         .setCalculateOnExit(calculateOnExit: true);
       let request = UpdateFormFieldOnlineRequest(document: requestDocument, formField: requestFormField as! FormFieldTextInput, index: 0, nodePath: "sections/0");
-      _ = try super.getApi().updateFormFieldOnline(request: request);
+       _ = try super.getApi().updateFormFieldOnline(request: request);
     }
 
     // Test for posting form field without node path.
@@ -102,7 +102,7 @@ class FormFieldTests: BaseTestContext {
         .setStatusText(statusText: "")
         .setCalculateOnExit(calculateOnExit: true);
       let request = UpdateFormFieldRequest(name: remoteFileName, index: 0, formField: requestFormField as! FormFieldTextInput, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().updateFormField(request: request);
+       let actual = try super.getApi().updateFormField(request: request);
       if (!(actual.getFormField() != nil)) { XCTFail("actual.getFormField() != nil"); return; }
       if (!(actual.getFormField()!.getName() == "FullName")) { XCTFail("actual.getFormField()!.getName() == " + "FullName"); return; }
       if (!(actual.getFormField()!.getStatusText() == "")) { XCTFail("actual.getFormField()!.getStatusText() == " + ""); return; }
@@ -115,7 +115,7 @@ class FormFieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFormFieldRequest(name: remoteFileName, index: 0, nodePath: "sections/0", folder: remoteDataFolder);
-      let actual = try super.getApi().getFormField(request: request);
+       let actual = try super.getApi().getFormField(request: request);
       if (!(actual.getFormField() != nil)) { XCTFail("actual.getFormField() != nil"); return; }
       if (!(actual.getFormField()!.getName() == "FullName")) { XCTFail("actual.getFormField()!.getName() == " + "FullName"); return; }
     }
@@ -124,7 +124,7 @@ class FormFieldTests: BaseTestContext {
     func testGetFormFieldOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false))!;
       let request = GetFormFieldOnlineRequest(document: requestDocument, index: 0, nodePath: "sections/0");
-      _ = try super.getApi().getFormFieldOnline(request: request);
+       _ = try super.getApi().getFormFieldOnline(request: request);
     }
 
     // Test for getting form field without node path.
@@ -134,7 +134,7 @@ class FormFieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFormFieldRequest(name: remoteFileName, index: 0, folder: remoteDataFolder);
-      let actual = try super.getApi().getFormField(request: request);
+       let actual = try super.getApi().getFormField(request: request);
       if (!(actual.getFormField() != nil)) { XCTFail("actual.getFormField() != nil"); return; }
       if (!(actual.getFormField()!.getName() == "FullName")) { XCTFail("actual.getFormField()!.getName() == " + "FullName"); return; }
     }
@@ -146,7 +146,7 @@ class FormFieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFormFieldsRequest(name: remoteFileName, nodePath: "sections/0", folder: remoteDataFolder);
-      let actual = try super.getApi().getFormFields(request: request);
+       let actual = try super.getApi().getFormFields(request: request);
       if (!(actual.getFormFields() != nil)) { XCTFail("actual.getFormFields() != nil"); return; }
       if (!(actual.getFormFields()!.getList() != nil)) { XCTFail("actual.getFormFields()!.getList() != nil"); return; }
       if (!(actual.getFormFields()!.getList()?.count == 5)) { XCTFail("actual.getFormFields()!.getList()?.count == 5"); return; }
@@ -157,7 +157,7 @@ class FormFieldTests: BaseTestContext {
     func testGetFormFieldsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false))!;
       let request = GetFormFieldsOnlineRequest(document: requestDocument, nodePath: "sections/0");
-      _ = try super.getApi().getFormFieldsOnline(request: request);
+       _ = try super.getApi().getFormFieldsOnline(request: request);
     }
 
     // Test for getting form fields without node path.
@@ -167,7 +167,7 @@ class FormFieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFormFieldsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getFormFields(request: request);
+       let actual = try super.getApi().getFormFields(request: request);
       if (!(actual.getFormFields() != nil)) { XCTFail("actual.getFormFields() != nil"); return; }
       if (!(actual.getFormFields()!.getList() != nil)) { XCTFail("actual.getFormFields()!.getList() != nil"); return; }
       if (!(actual.getFormFields()!.getList()?.count == 5)) { XCTFail("actual.getFormFields()!.getList()?.count == 5"); return; }
@@ -189,7 +189,7 @@ class FormFieldTests: BaseTestContext {
         .setStatusText(statusText: "")
         .setCalculateOnExit(calculateOnExit: true);
       let request = InsertFormFieldRequest(name: remoteFileName, formField: requestFormField as! FormFieldTextInput, nodePath: "sections/0/paragraphs/0", folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().insertFormField(request: request);
+       let actual = try super.getApi().insertFormField(request: request);
       if (!(actual.getFormField() != nil)) { XCTFail("actual.getFormField() != nil"); return; }
       if (!(actual.getFormField()!.getName() == "FullName")) { XCTFail("actual.getFormField()!.getName() == " + "FullName"); return; }
       if (!(actual.getFormField()!.getStatusText() == "")) { XCTFail("actual.getFormField()!.getStatusText() == " + ""); return; }
@@ -207,7 +207,7 @@ class FormFieldTests: BaseTestContext {
         .setStatusText(statusText: "")
         .setCalculateOnExit(calculateOnExit: true);
       let request = InsertFormFieldOnlineRequest(document: requestDocument, formField: requestFormField as! FormFieldTextInput, nodePath: "sections/0/paragraphs/0");
-      _ = try super.getApi().insertFormFieldOnline(request: request);
+       _ = try super.getApi().insertFormFieldOnline(request: request);
     }
 
     // Test for insert form field without node path.
@@ -225,7 +225,7 @@ class FormFieldTests: BaseTestContext {
         .setStatusText(statusText: "")
         .setCalculateOnExit(calculateOnExit: true);
       let request = InsertFormFieldRequest(name: remoteFileName, formField: requestFormField as! FormFieldTextInput, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().insertFormField(request: request);
+       let actual = try super.getApi().insertFormField(request: request);
       if (!(actual.getFormField() != nil)) { XCTFail("actual.getFormField() != nil"); return; }
       if (!(actual.getFormField()!.getName() == "FullName")) { XCTFail("actual.getFormField()!.getName() == " + "FullName"); return; }
       if (!(actual.getFormField()!.getStatusText() == "")) { XCTFail("actual.getFormField()!.getStatusText() == " + ""); return; }
@@ -238,14 +238,14 @@ class FormFieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFormFieldRequest(name: remoteFileName, index: 0, nodePath: "sections/0", folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      try super.getApi().deleteFormField(request: request);
+       try super.getApi().deleteFormField(request: request);
     }
 
     // Test for deleting form field online.
     func testDeleteFormFieldOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false))!;
       let request = DeleteFormFieldOnlineRequest(document: requestDocument, index: 0, nodePath: "sections/0");
-      _ = try super.getApi().deleteFormFieldOnline(request: request);
+       _ = try super.getApi().deleteFormFieldOnline(request: request);
     }
 
     // Test for deleting form field without node path.
@@ -255,6 +255,6 @@ class FormFieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/FormFilled.docx", isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFormFieldRequest(name: remoteFileName, index: 0, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      try super.getApi().deleteFormField(request: request);
+       try super.getApi().deleteFormField(request: request);
     }
 }

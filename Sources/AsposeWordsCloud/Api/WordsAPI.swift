@@ -216,6 +216,69 @@ public class WordsAPI : Encryptor {
         return responseObject!;
     }
 
+    // Async representation of appendDocumentJob method
+    // Appends documents to the original document.
+    public func appendDocumentJob(request : AppendDocumentJobRequest, callback : @escaping (_ response : JobHandler< DocumentResponse >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< DocumentResponse >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of appendDocumentJob method
+    // Appends documents to the original document.
+    public func appendDocumentJob(request : AppendDocumentJobRequest) throws -> JobHandler< DocumentResponse > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< DocumentResponse >? = nil;
+        var responseError : Error? = nil;
+        self.appendDocumentJob(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
     // Async representation of appendDocumentOnline method
     // Appends documents to the original document.
     public func appendDocumentOnline(request : AppendDocumentOnlineRequest, callback : @escaping (_ response : AppendDocumentOnlineResponse?, _ error : Error?) -> ()) {
@@ -257,6 +320,69 @@ public class WordsAPI : Encryptor {
         var responseObject : AppendDocumentOnlineResponse? = nil;
         var responseError : Error? = nil;
         self.appendDocumentOnline(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
+    // Async representation of appendDocumentOnlineJob method
+    // Appends documents to the original document.
+    public func appendDocumentOnlineJob(request : AppendDocumentOnlineJobRequest, callback : @escaping (_ response : JobHandler< AppendDocumentOnlineResponse >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< AppendDocumentOnlineResponse >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of appendDocumentOnlineJob method
+    // Appends documents to the original document.
+    public func appendDocumentOnlineJob(request : AppendDocumentOnlineJobRequest) throws -> JobHandler< AppendDocumentOnlineResponse > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< AppendDocumentOnlineResponse >? = nil;
+        var responseError : Error? = nil;
+        self.appendDocumentOnlineJob(request : request, callback: { response, error in
             responseObject = response;
             responseError = error;
             semaphore.signal();
@@ -747,6 +873,69 @@ public class WordsAPI : Encryptor {
         var responseObject : Data? = nil;
         var responseError : Error? = nil;
         self.convertDocument(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
+    // Async representation of convertDocumentJob method
+    // Converts a document on a local drive to the specified format.
+    public func convertDocumentJob(request : ConvertDocumentJobRequest, callback : @escaping (_ response : JobHandler< Data >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< Data >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of convertDocumentJob method
+    // Converts a document on a local drive to the specified format.
+    public func convertDocumentJob(request : ConvertDocumentJobRequest) throws -> JobHandler< Data > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< Data >? = nil;
+        var responseError : Error? = nil;
+        self.convertDocumentJob(request : request, callback: { response, error in
             responseObject = response;
             responseError = error;
             semaphore.signal();
@@ -4335,6 +4524,69 @@ public class WordsAPI : Encryptor {
         return responseObject!;
     }
 
+    // Async representation of executeMailMergeJob method
+    // Executes a Mail Merge operation.
+    public func executeMailMergeJob(request : ExecuteMailMergeJobRequest, callback : @escaping (_ response : JobHandler< DocumentResponse >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< DocumentResponse >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of executeMailMergeJob method
+    // Executes a Mail Merge operation.
+    public func executeMailMergeJob(request : ExecuteMailMergeJobRequest) throws -> JobHandler< DocumentResponse > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< DocumentResponse >? = nil;
+        var responseError : Error? = nil;
+        self.executeMailMergeJob(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
     // Async representation of executeMailMergeOnline method
     // Executes a Mail Merge operation online.
     public func executeMailMergeOnline(request : ExecuteMailMergeOnlineRequest, callback : @escaping (_ response : Data?, _ error : Error?) -> ()) {
@@ -4376,6 +4628,69 @@ public class WordsAPI : Encryptor {
         var responseObject : Data? = nil;
         var responseError : Error? = nil;
         self.executeMailMergeOnline(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
+    // Async representation of executeMailMergeOnlineJob method
+    // Executes a Mail Merge operation online.
+    public func executeMailMergeOnlineJob(request : ExecuteMailMergeOnlineJobRequest, callback : @escaping (_ response : JobHandler< Data >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< Data >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of executeMailMergeOnlineJob method
+    // Executes a Mail Merge operation online.
+    public func executeMailMergeOnlineJob(request : ExecuteMailMergeOnlineJobRequest) throws -> JobHandler< Data > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< Data >? = nil;
+        var responseError : Error? = nil;
+        self.executeMailMergeOnlineJob(request : request, callback: { response, error in
             responseObject = response;
             responseError = error;
             semaphore.signal();
@@ -15600,6 +15915,69 @@ public class WordsAPI : Encryptor {
         return responseObject!;
     }
 
+    // Async representation of splitDocumentJob method
+    // Splits a document into parts and saves them in the specified format.
+    public func splitDocumentJob(request : SplitDocumentJobRequest, callback : @escaping (_ response : JobHandler< SplitDocumentResponse >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< SplitDocumentResponse >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of splitDocumentJob method
+    // Splits a document into parts and saves them in the specified format.
+    public func splitDocumentJob(request : SplitDocumentJobRequest) throws -> JobHandler< SplitDocumentResponse > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< SplitDocumentResponse >? = nil;
+        var responseError : Error? = nil;
+        self.splitDocumentJob(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
     // Async representation of splitDocumentOnline method
     // Splits a document into parts and saves them in the specified format.
     public func splitDocumentOnline(request : SplitDocumentOnlineRequest, callback : @escaping (_ response : SplitDocumentOnlineResponse?, _ error : Error?) -> ()) {
@@ -15641,6 +16019,69 @@ public class WordsAPI : Encryptor {
         var responseObject : SplitDocumentOnlineResponse? = nil;
         var responseError : Error? = nil;
         self.splitDocumentOnline(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
+    // Async representation of splitDocumentOnlineJob method
+    // Splits a document into parts and saves them in the specified format.
+    public func splitDocumentOnlineJob(request : SplitDocumentOnlineJobRequest, callback : @escaping (_ response : JobHandler< SplitDocumentOnlineResponse >?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            let info = try request.deserializeResponse(data: response!, headers: headers) as? JobInfo;
+                            if (info == nil) {
+                                throw WordsApiError.invalidTypeDeserialization(typeName: "JobInfo");
+                            }
+
+                            callback(JobHandler< SplitDocumentOnlineResponse >(
+                                apiInvoker: self.apiInvoker!,
+                                request: request.getOriginalRequest(),
+                                info: info!
+                            ), nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of splitDocumentOnlineJob method
+    // Splits a document into parts and saves them in the specified format.
+    public func splitDocumentOnlineJob(request : SplitDocumentOnlineJobRequest) throws -> JobHandler< SplitDocumentOnlineResponse > {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : JobHandler< SplitDocumentOnlineResponse >? = nil;
+        var responseError : Error? = nil;
+        self.splitDocumentOnlineJob(request : request, callback: { response, error in
             responseObject = response;
             responseError = error;
             semaphore.signal();

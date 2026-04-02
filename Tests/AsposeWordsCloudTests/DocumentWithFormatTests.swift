@@ -45,7 +45,7 @@ class DocumentWithFormatTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentWithFormatRequest(name: remoteFileName, format: "text", folder: remoteDataFolder);
-      _ = try super.getApi().getDocumentWithFormat(request: request);
+       _ = try super.getApi().getDocumentWithFormat(request: request);
     }
 
     // Test for getting document with specified format.
@@ -55,6 +55,6 @@ class DocumentWithFormatTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentWithFormatRequest(name: remoteFileName, format: "text", folder: remoteDataFolder, outPath: BaseTestContext.getRemoteTestOut() + "/TestGetDocumentWithFormatAndOutPath.text");
-      _ = try super.getApi().getDocumentWithFormat(request: request);
+       _ = try super.getApi().getDocumentWithFormat(request: request);
     }
 }

@@ -53,7 +53,7 @@ class ListsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetListsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getLists(request: request);
+       let actual = try super.getApi().getLists(request: request);
       if (!(actual.getLists() != nil)) { XCTFail("actual.getLists() != nil"); return; }
       if (!(actual.getLists()!.getListInfo() != nil)) { XCTFail("actual.getLists()!.getListInfo() != nil"); return; }
       if (!(actual.getLists()!.getListInfo()?.count == 2)) { XCTFail("actual.getLists()!.getListInfo()?.count == 2"); return; }
@@ -64,7 +64,7 @@ class ListsTests: BaseTestContext {
     func testGetListsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetListsOnlineRequest(document: requestDocument);
-      _ = try super.getApi().getListsOnline(request: request);
+       _ = try super.getApi().getListsOnline(request: request);
     }
 
     // Test for getting list from document.
@@ -74,7 +74,7 @@ class ListsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetListRequest(name: remoteFileName, listId: 1, folder: remoteDataFolder);
-      let actual = try super.getApi().getList(request: request);
+       let actual = try super.getApi().getList(request: request);
       if (!(actual.getList() != nil)) { XCTFail("actual.getList() != nil"); return; }
       if (!(actual.getList()!.getListId() == 1)) { XCTFail("actual.getList()!.getListId() == 1"); return; }
     }
@@ -83,7 +83,7 @@ class ListsTests: BaseTestContext {
     func testGetListOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetListOnlineRequest(document: requestDocument, listId: 1);
-      _ = try super.getApi().getListOnline(request: request);
+       _ = try super.getApi().getListOnline(request: request);
     }
 
     // Test for updating list from document.
@@ -95,7 +95,7 @@ class ListsTests: BaseTestContext {
       let requestListUpdate = ListUpdate()
         .setIsRestartAtEachSection(isRestartAtEachSection: true);
       let request = UpdateListRequest(name: remoteFileName, listId: 1, listUpdate: requestListUpdate, folder: remoteDataFolder);
-      _ = try super.getApi().updateList(request: request);
+       _ = try super.getApi().updateList(request: request);
     }
 
     // Test for updating list from document online.
@@ -104,7 +104,7 @@ class ListsTests: BaseTestContext {
       let requestListUpdate = ListUpdate()
         .setIsRestartAtEachSection(isRestartAtEachSection: true);
       let request = UpdateListOnlineRequest(document: requestDocument, listId: 1, listUpdate: requestListUpdate);
-      let actual = try super.getApi().updateListOnline(request: request);
+       let actual = try super.getApi().updateListOnline(request: request);
       if (!(actual.getModel()!.getList() != nil)) { XCTFail("actual.getModel()!.getList() != nil"); return; }
       if (!(actual.getModel()!.getList()!.getListId() == 1)) { XCTFail("actual.getModel()!.getList()!.getListId() == 1"); return; }
       if (!(actual.getModel()!.getList()!.getIsRestartAtEachSection() == true)) { XCTFail("actual.getModel()!.getList()!.getIsRestartAtEachSection() == true"); return; }
@@ -119,7 +119,7 @@ class ListsTests: BaseTestContext {
       let requestListUpdate = ListLevelUpdate()
         .setAlignment(alignment: ListLevelUpdate.Alignment._right);
       let request = UpdateListLevelRequest(name: remoteFileName, listId: 1, listLevel: 1, listUpdate: requestListUpdate, folder: remoteDataFolder);
-      _ = try super.getApi().updateListLevel(request: request);
+       _ = try super.getApi().updateListLevel(request: request);
     }
 
     // Test for updating list level from document online.
@@ -128,7 +128,7 @@ class ListsTests: BaseTestContext {
       let requestListUpdate = ListLevelUpdate()
         .setAlignment(alignment: ListLevelUpdate.Alignment._right);
       let request = UpdateListLevelOnlineRequest(document: requestDocument, listId: 1, listUpdate: requestListUpdate, listLevel: 1);
-      let actual = try super.getApi().updateListLevelOnline(request: request);
+       let actual = try super.getApi().updateListLevelOnline(request: request);
       if (!(actual.getModel()!.getList() != nil)) { XCTFail("actual.getModel()!.getList() != nil"); return; }
       if (!(actual.getModel()!.getList()!.getListLevels() != nil)) { XCTFail("actual.getModel()!.getList()!.getListLevels() != nil"); return; }
       if (!(actual.getModel()!.getList()!.getListLevels()!.getListLevel() != nil)) { XCTFail("actual.getModel()!.getList()!.getListLevels()!.getListLevel() != nil"); return; }
@@ -145,7 +145,7 @@ class ListsTests: BaseTestContext {
       let requestListInsert = ListInsert()
         .setTemplate(template: ListInsert.Template.outlineLegal);
       let request = InsertListRequest(name: remoteFileName, listInsert: requestListInsert, folder: remoteDataFolder);
-      let actual = try super.getApi().insertList(request: request);
+       let actual = try super.getApi().insertList(request: request);
       if (!(actual.getList() != nil)) { XCTFail("actual.getList() != nil"); return; }
       if (!(actual.getList()!.getListId() == 3)) { XCTFail("actual.getList()!.getListId() == 3"); return; }
     }
@@ -156,6 +156,6 @@ class ListsTests: BaseTestContext {
       let requestListInsert = ListInsert()
         .setTemplate(template: ListInsert.Template.outlineLegal);
       let request = InsertListOnlineRequest(document: requestDocument, listInsert: requestListInsert);
-      _ = try super.getApi().insertListOnline(request: request);
+       _ = try super.getApi().insertListOnline(request: request);
     }
 }

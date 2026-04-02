@@ -45,7 +45,7 @@ class DocumentStatisticsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentStatisticsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getDocumentStatistics(request: request);
+       let actual = try super.getApi().getDocumentStatistics(request: request);
       if (!(actual.getStatData() != nil)) { XCTFail("actual.getStatData() != nil"); return; }
       if (!(actual.getStatData()!.getWordCount() == 10)) { XCTFail("actual.getStatData()!.getWordCount() == 10"); return; }
     }
@@ -54,6 +54,6 @@ class DocumentStatisticsTests: BaseTestContext {
     func testGetDocumentStatisticsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetDocumentStatisticsOnlineRequest(document: requestDocument);
-      _ = try super.getApi().getDocumentStatisticsOnline(request: request);
+       _ = try super.getApi().getDocumentStatisticsOnline(request: request);
     }
 }

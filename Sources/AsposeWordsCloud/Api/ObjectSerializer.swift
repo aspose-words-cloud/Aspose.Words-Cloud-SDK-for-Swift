@@ -168,6 +168,7 @@ class ObjectSerializer {
         "ImageEntryList, _": ImageEntryList.self,
         "InfoAdditionalItem, _": InfoAdditionalItem.self,
         "InfoResponse, _": InfoResponse.self,
+        "JobInfo, _": JobInfo.self,
         "JpegSaveOptionsData, _": JpegSaveOptionsData.self,
         "JsonDataLoadOptions, _": JsonDataLoadOptions.self,
         "Link, _": Link.self,
@@ -612,6 +613,61 @@ class ObjectSerializer {
         }
 
         return try request.deserializeResponse(data: bodyData, headers: headers);
+    }
+
+    public static func deserializeJobInfoPart(partData: ResponseFormParam) throws -> JobInfo {
+        return try ObjectSerializer.deserialize(type: JobInfo.self, from: partData.getBody());
+    }
+
+    public static func deserializeHttpResponsePart(request: WordsApiRequest, partData: ResponseFormParam) throws -> Any? {
+        let separator = "\r\n\r\n".data(using: .utf8)!;
+        let data = partData.getBody();
+        let httpPrefix = "HTTP/".data(using: .utf8)!;
+
+        if (!data.starts(with: httpPrefix)) {
+            return try request.deserializeResponse(data: partData.getBody(), headers: partData.getHeaders());
+        }
+
+        let partDataBounds = data.range(of: separator);
+        if (partDataBounds == nil || partDataBounds!.isEmpty) {
+            throw WordsApiError.invalidMultipartResponse(message: "Body content not found");
+        }
+
+        let headData = data.subdata(in: data.startIndex..<partDataBounds!.lowerBound);
+        let headContent = String(decoding: headData, as: UTF8.self);
+        let headParts = headContent.components(separatedBy: "\r\n");
+        if (headParts.count == 0) {
+            throw WordsApiError.invalidMultipartResponse(message: "Head content not found");
+        }
+
+        let statusLine = headParts[0].split(separator: " ", omittingEmptySubsequences: true);
+        if (statusLine.count < 2 || !statusLine[0].starts(with: "HTTP/")) {
+            throw WordsApiError.invalidMultipartResponse(message: "Failed to parse HTTP response part.");
+        }
+
+        let codeStatus = Int(statusLine[1]);
+        if (codeStatus == nil) {
+            throw WordsApiError.invalidMultipartResponse(message: "Failed to parse HTTP response part.");
+        }
+
+        var headers = [String : String]();
+        for headerLine in headParts.dropFirst() {
+            if (!headerLine.contains(":")) {
+                continue;
+            }
+
+            let headerParts = headerLine.components(separatedBy: ":");
+            if (headerParts.count >= 2) {
+                headers[headerParts[0].trimmingCharacters(in: .whitespacesAndNewlines)] = headerParts.dropFirst().joined(separator: ":").trimmingCharacters(in: .whitespacesAndNewlines);
+            }
+        }
+
+        let bodyData = data.subdata(in: partDataBounds!.upperBound..<data.endIndex);
+        if (codeStatus! >= 200 && codeStatus! < 300) {
+            return try request.deserializeResponse(data: bodyData, headers: headers);
+        }
+
+        throw WordsApiError.requestError(errorCode: codeStatus!, message: String(decoding: bodyData, as: UTF8.self));
     }
 
     // Configuration for DateTime serialization/deserialization

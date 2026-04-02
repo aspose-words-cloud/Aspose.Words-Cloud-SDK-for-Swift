@@ -49,7 +49,7 @@ class RevisionsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = AcceptAllRevisionsRequest(name: remoteFileName, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().acceptAllRevisions(request: request);
+       let actual = try super.getApi().acceptAllRevisions(request: request);
       if (!(actual.getResult() != nil)) { XCTFail("actual.getResult() != nil"); return; }
       if (!(actual.getResult()!.getDest() != nil)) { XCTFail("actual.getResult()!.getDest() != nil"); return; }
     }
@@ -58,7 +58,7 @@ class RevisionsTests: BaseTestContext {
     func testAcceptAllRevisionsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = AcceptAllRevisionsOnlineRequest(document: requestDocument);
-      let actual = try super.getApi().acceptAllRevisionsOnline(request: request);
+       let actual = try super.getApi().acceptAllRevisionsOnline(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getModel() != nil)) { XCTFail("actual.getModel() != nil"); return; }
       if (!(actual.getModel()!.getResult() != nil)) { XCTFail("actual.getModel()!.getResult() != nil"); return; }
@@ -72,7 +72,7 @@ class RevisionsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = RejectAllRevisionsRequest(name: remoteFileName, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().rejectAllRevisions(request: request);
+       let actual = try super.getApi().rejectAllRevisions(request: request);
       if (!(actual.getResult() != nil)) { XCTFail("actual.getResult() != nil"); return; }
       if (!(actual.getResult()!.getDest() != nil)) { XCTFail("actual.getResult()!.getDest() != nil"); return; }
     }
@@ -81,7 +81,7 @@ class RevisionsTests: BaseTestContext {
     func testRejectAllRevisionsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = RejectAllRevisionsOnlineRequest(document: requestDocument);
-      let actual = try super.getApi().rejectAllRevisionsOnline(request: request);
+       let actual = try super.getApi().rejectAllRevisionsOnline(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getModel() != nil)) { XCTFail("actual.getModel() != nil"); return; }
       if (!(actual.getModel()!.getResult() != nil)) { XCTFail("actual.getModel()!.getResult() != nil"); return; }
@@ -95,7 +95,7 @@ class RevisionsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetAllRevisionsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getAllRevisions(request: request);
+       let actual = try super.getApi().getAllRevisions(request: request);
       if (!(actual.getRevisions() != nil)) { XCTFail("actual.getRevisions() != nil"); return; }
       if (!(actual.getRevisions()!.getRevisions()?.count == 6)) { XCTFail("actual.getRevisions()!.getRevisions()?.count == 6"); return; }
     }
@@ -104,7 +104,7 @@ class RevisionsTests: BaseTestContext {
     func testGetAllRevisionsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetAllRevisionsOnlineRequest(document: requestDocument);
-      let actual = try super.getApi().getAllRevisionsOnline(request: request);
+       let actual = try super.getApi().getAllRevisionsOnline(request: request);
       if (!(actual.getRevisions() != nil)) { XCTFail("actual.getRevisions() != nil"); return; }
       if (!(actual.getRevisions()!.getRevisions()?.count == 6)) { XCTFail("actual.getRevisions()!.getRevisions()?.count == 6"); return; }
     }

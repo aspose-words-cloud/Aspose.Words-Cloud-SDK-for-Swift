@@ -51,7 +51,7 @@ class ExecuteTemplateWithFieldOptionsTests: BaseTestContext {
       let requestOptions = FieldOptions()
         .setCurrentUser(currentUser: requestOptionsCurrentUser);
       let request = ExecuteMailMergeRequest(name: remoteFileName, data: localDataFile, options: requestOptions, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().executeMailMerge(request: request);
+       let actual = try super.getApi().executeMailMerge(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestMailMergeWithOptions.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestMailMergeWithOptions.docx"); return; }
     }
@@ -68,6 +68,6 @@ class ExecuteTemplateWithFieldOptionsTests: BaseTestContext {
       let requestOptions = FieldOptions()
         .setCurrentUser(currentUser: requestOptionsCurrentUser);
       let request = ExecuteMailMergeOnlineRequest(template: requestTemplate, data: requestData, options: requestOptions);
-      _ = try super.getApi().executeMailMergeOnline(request: request);
+       _ = try super.getApi().executeMailMergeOnline(request: request);
     }
 }

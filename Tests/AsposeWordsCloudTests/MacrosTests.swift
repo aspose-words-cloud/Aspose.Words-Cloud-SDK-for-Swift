@@ -45,13 +45,13 @@ class MacrosTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteMacrosRequest(name: remoteFileName, folder: remoteDataFolder);
-      try super.getApi().deleteMacros(request: request);
+       try super.getApi().deleteMacros(request: request);
     }
 
     // Test for deleting macros online.
     func testDeleteMacrosOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteMacrosOnlineRequest(document: requestDocument);
-      _ = try super.getApi().deleteMacrosOnline(request: request);
+       _ = try super.getApi().deleteMacrosOnline(request: request);
     }
 }

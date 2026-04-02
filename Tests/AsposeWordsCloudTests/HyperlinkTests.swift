@@ -47,7 +47,7 @@ class HyperlinkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentHyperlinkByIndexRequest(name: remoteFileName, hyperlinkIndex: 0, folder: remoteDataFolder);
-      let actual = try super.getApi().getDocumentHyperlinkByIndex(request: request);
+       let actual = try super.getApi().getDocumentHyperlinkByIndex(request: request);
       if (!(actual.getHyperlink() != nil)) { XCTFail("actual.getHyperlink() != nil"); return; }
       if (!(actual.getHyperlink()!.getDisplayText() == "Aspose")) { XCTFail("actual.getHyperlink()!.getDisplayText() == " + "Aspose"); return; }
     }
@@ -56,7 +56,7 @@ class HyperlinkTests: BaseTestContext {
     func testGetDocumentHyperlinkByIndexOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetDocumentHyperlinkByIndexOnlineRequest(document: requestDocument, hyperlinkIndex: 0);
-      _ = try super.getApi().getDocumentHyperlinkByIndexOnline(request: request);
+       _ = try super.getApi().getDocumentHyperlinkByIndexOnline(request: request);
     }
 
     // Test for getting hyperlinks.
@@ -66,7 +66,7 @@ class HyperlinkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentHyperlinksRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getDocumentHyperlinks(request: request);
+       let actual = try super.getApi().getDocumentHyperlinks(request: request);
       if (!(actual.getHyperlinks() != nil)) { XCTFail("actual.getHyperlinks() != nil"); return; }
       if (!(actual.getHyperlinks()!.getHyperlinkList() != nil)) { XCTFail("actual.getHyperlinks()!.getHyperlinkList() != nil"); return; }
       if (!(actual.getHyperlinks()!.getHyperlinkList()?.count == 2)) { XCTFail("actual.getHyperlinks()!.getHyperlinkList()?.count == 2"); return; }
@@ -77,6 +77,6 @@ class HyperlinkTests: BaseTestContext {
     func testGetDocumentHyperlinksOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetDocumentHyperlinksOnlineRequest(document: requestDocument);
-      _ = try super.getApi().getDocumentHyperlinksOnline(request: request);
+       _ = try super.getApi().getDocumentHyperlinksOnline(request: request);
     }
 }

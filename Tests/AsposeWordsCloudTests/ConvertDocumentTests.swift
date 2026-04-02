@@ -37,7 +37,8 @@ class ConvertDocumentTests: BaseTestContext {
         ("testSaveAsDocx", testSaveAsDocx),
         ("testSaveAsTiff", testSaveAsTiff),
         ("testSaveAsTiffOnline", testSaveAsTiffOnline),
-        ("testConvertDocument", testConvertDocument)
+        ("testConvertDocument", testConvertDocument),
+        ("testConvertDocumentJob", testConvertDocumentJob)
     ];
 
     let remoteFolder = BaseTestContext.getRemoteTestDataFolder() + "/DocumentActions/ConvertDocument";
@@ -53,7 +54,7 @@ class ConvertDocumentTests: BaseTestContext {
       let requestSaveOptionsData = PdfSaveOptionsData()
         .setFileName(fileName: BaseTestContext.getRemoteTestOut() + "/TestSaveAs.pdf");
       let request = SaveAsRequest(name: remoteName, saveOptionsData: requestSaveOptionsData as! PdfSaveOptionsData, folder: remoteFolder);
-      let actual = try super.getApi().saveAs(request: request);
+       let actual = try super.getApi().saveAs(request: request);
       if (!(actual.getSaveResult() != nil)) { XCTFail("actual.getSaveResult() != nil"); return; }
       if (!(actual.getSaveResult()!.getDestDocument() != nil)) { XCTFail("actual.getSaveResult()!.getDestDocument() != nil"); return; }
     }
@@ -66,7 +67,7 @@ class ConvertDocumentTests: BaseTestContext {
       let requestSaveOptionsData = PdfSaveOptionsData()
         .setFileName(fileName: BaseTestContext.getRemoteTestOut() + "/TestSaveAs.pdf");
       let request = SaveAsOnlineRequest(document: requestDocument, saveOptionsData: requestSaveOptionsData as! PdfSaveOptionsData);
-      _ = try super.getApi().saveAsOnline(request: request);
+       _ = try super.getApi().saveAsOnline(request: request);
     }
 
     // Test for converting document online to html with additional files like css and images.
@@ -79,7 +80,7 @@ class ConvertDocumentTests: BaseTestContext {
         .setCssStyleSheetType(cssStyleSheetType: HtmlSaveOptionsData.CssStyleSheetType.external)
         .setFileName(fileName: BaseTestContext.getRemoteTestOut() + "/TestSaveAsHtml.html");
       let request = SaveAsOnlineRequest(document: requestDocument, saveOptionsData: requestSaveOptionsData as! HtmlSaveOptionsData);
-      _ = try super.getApi().saveAsOnline(request: request);
+       _ = try super.getApi().saveAsOnline(request: request);
     }
 
     // Test for converting document to one of the available formats.
@@ -92,7 +93,7 @@ class ConvertDocumentTests: BaseTestContext {
       let requestSaveOptionsData = DocxSaveOptionsData()
         .setFileName(fileName: BaseTestContext.getRemoteTestOut() + "/TestSaveAsFromPdfToDoc.docx");
       let request = SaveAsRequest(name: remoteName, saveOptionsData: requestSaveOptionsData as! DocxSaveOptionsData, folder: remoteFolder);
-      let actual = try super.getApi().saveAs(request: request);
+       let actual = try super.getApi().saveAs(request: request);
       if (!(actual.getSaveResult() != nil)) { XCTFail("actual.getSaveResult() != nil"); return; }
       if (!(actual.getSaveResult()!.getDestDocument() != nil)) { XCTFail("actual.getSaveResult()!.getDestDocument() != nil"); return; }
     }
@@ -107,7 +108,7 @@ class ConvertDocumentTests: BaseTestContext {
       let requestSaveOptions = TiffSaveOptionsData()
         .setFileName(fileName: BaseTestContext.getRemoteTestOut() + "/abc.tiff");
       let request = SaveAsTiffRequest(name: remoteName, saveOptions: requestSaveOptions as! TiffSaveOptionsData, folder: remoteFolder);
-      let actual = try super.getApi().saveAsTiff(request: request);
+       let actual = try super.getApi().saveAsTiff(request: request);
       if (!(actual.getSaveResult() != nil)) { XCTFail("actual.getSaveResult() != nil"); return; }
       if (!(actual.getSaveResult()!.getDestDocument() != nil)) { XCTFail("actual.getSaveResult()!.getDestDocument() != nil"); return; }
     }
@@ -120,13 +121,21 @@ class ConvertDocumentTests: BaseTestContext {
       let requestSaveOptions = TiffSaveOptionsData()
         .setFileName(fileName: BaseTestContext.getRemoteTestOut() + "/abc.tiff");
       let request = SaveAsTiffOnlineRequest(document: requestDocument, saveOptions: requestSaveOptions as! TiffSaveOptionsData);
-      _ = try super.getApi().saveAsTiffOnline(request: request);
+       _ = try super.getApi().saveAsTiffOnline(request: request);
     }
 
     // A test for ConvertDocument.
     func testConvertDocument() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFolder + "/test_uploadfile.docx", isDirectory: false))!;
       let request = ConvertDocumentRequest(document: requestDocument, format: "pdf");
-      _ = try super.getApi().convertDocument(request: request);
+       _ = try super.getApi().convertDocument(request: request);
+    }
+
+    // A test for ConvertDocument as a job.
+    func testConvertDocumentJob() throws {
+      let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFolder + "/test_uploadfile.docx", isDirectory: false))!;
+      let request = ConvertDocumentJobRequest(document: requestDocument, format: "pdf");
+      let jobHandler = try super.getApi().convertDocumentJob(request: request);
+      _ = try jobHandler.waitResult(updateInterval: 3.0);
     }
 }
