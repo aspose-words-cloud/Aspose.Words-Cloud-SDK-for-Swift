@@ -22,7 +22,7 @@ let package = Package(
             dependencies: [
                 "AsposeWordsCloudHealthProdCheck",
                 .product(name: "SwiftTestReporter", package: "swift-junit"),
-                .product(name: "AsposeWordsCloud", package: "aspose-words-cloud-swift"),
+                .product(name: "AsposeWordsCloud", package: "Aspose.Words-Cloud-SDK-for-Swift"),
             ]
         ),
     ]
