@@ -44,7 +44,7 @@ class MailMergeFiledsTests: BaseTestContext {
 
       let requestTemplate = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(mailMergeFolder + "/" + localDocumentFile, isDirectory: false))!;
       let request = GetDocumentFieldNamesOnlineRequest(template: requestTemplate, useNonMergeFields: true);
-      let actual = try super.getApi().getDocumentFieldNamesOnline(request: request);
+       let actual = try super.getApi().getDocumentFieldNamesOnline(request: request);
       if (!(actual.getFieldNames() != nil)) { XCTFail("actual.getFieldNames() != nil"); return; }
       if (!(actual.getFieldNames()!.getNames() != nil)) { XCTFail("actual.getFieldNames()!.getNames() != nil"); return; }
       if (!(actual.getFieldNames()!.getNames()?.count == 15)) { XCTFail("actual.getFieldNames()!.getNames()?.count == 15"); return; }
@@ -58,7 +58,7 @@ class MailMergeFiledsTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/test_multi_pages.docx", isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentFieldNamesRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getDocumentFieldNames(request: request);
+       let actual = try super.getApi().getDocumentFieldNames(request: request);
       if (!(actual.getFieldNames() != nil)) { XCTFail("actual.getFieldNames() != nil"); return; }
       if (!(actual.getFieldNames()!.getNames() != nil)) { XCTFail("actual.getFieldNames()!.getNames() != nil"); return; }
       if (!(actual.getFieldNames()!.getNames()?.count == 0)) { XCTFail("actual.getFieldNames()!.getNames()?.count == 0"); return; }

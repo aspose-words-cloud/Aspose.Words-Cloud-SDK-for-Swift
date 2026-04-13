@@ -55,7 +55,7 @@ class CommentTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetCommentRequest(name: remoteFileName, commentIndex: 0, folder: remoteDataFolder);
-      let actual = try super.getApi().getComment(request: request);
+       let actual = try super.getApi().getComment(request: request);
       if (!(actual.getComment() != nil)) { XCTFail("actual.getComment() != nil"); return; }
       if (!(actual.getComment()!.getText() == "Comment 1" + "\r\n\r\n")) { XCTFail("actual.getComment()!.getText() == " + "Comment 1" + "\r\n\r\n"); return; }
     }
@@ -64,7 +64,7 @@ class CommentTests: BaseTestContext {
     func testGetCommentOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetCommentOnlineRequest(document: requestDocument, commentIndex: 0);
-      _ = try super.getApi().getCommentOnline(request: request);
+       _ = try super.getApi().getCommentOnline(request: request);
     }
 
     // Test for getting all comments from document.
@@ -74,7 +74,7 @@ class CommentTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetCommentsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getComments(request: request);
+       let actual = try super.getApi().getComments(request: request);
       if (!(actual.getComments() != nil)) { XCTFail("actual.getComments() != nil"); return; }
       if (!(actual.getComments()!.getCommentList() != nil)) { XCTFail("actual.getComments()!.getCommentList() != nil"); return; }
       if (!(actual.getComments()!.getCommentList()?.count == 1)) { XCTFail("actual.getComments()!.getCommentList()?.count == 1"); return; }
@@ -85,7 +85,7 @@ class CommentTests: BaseTestContext {
     func testGetCommentsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetCommentsOnlineRequest(document: requestDocument);
-      _ = try super.getApi().getCommentsOnline(request: request);
+       _ = try super.getApi().getCommentsOnline(request: request);
     }
 
     // Test for adding comment.
@@ -107,7 +107,7 @@ class CommentTests: BaseTestContext {
         .setInitial(initial: "IA")
         .setText(text: "A new Comment");
       let request = InsertCommentRequest(name: remoteFileName, comment: requestComment as! CommentInsert, folder: remoteDataFolder);
-      let actual = try super.getApi().insertComment(request: request);
+       let actual = try super.getApi().insertComment(request: request);
       if (!(actual.getComment() != nil)) { XCTFail("actual.getComment() != nil"); return; }
       if (!(actual.getComment()!.getText() == "A new Comment" + "\r\n")) { XCTFail("actual.getComment()!.getText() == " + "A new Comment" + "\r\n"); return; }
       if (!(actual.getComment()!.getRangeStart() != nil)) { XCTFail("actual.getComment()!.getRangeStart() != nil"); return; }
@@ -131,7 +131,7 @@ class CommentTests: BaseTestContext {
         .setInitial(initial: "IA")
         .setText(text: "A new Comment");
       let request = InsertCommentOnlineRequest(document: requestDocument, comment: requestComment as! CommentInsert);
-      _ = try super.getApi().insertCommentOnline(request: request);
+       _ = try super.getApi().insertCommentOnline(request: request);
     }
 
     // Test for updating comment.
@@ -153,7 +153,7 @@ class CommentTests: BaseTestContext {
         .setInitial(initial: "IA")
         .setText(text: "A new Comment");
       let request = UpdateCommentRequest(name: remoteFileName, commentIndex: 0, comment: requestComment as! CommentUpdate, folder: remoteDataFolder);
-      let actual = try super.getApi().updateComment(request: request);
+       let actual = try super.getApi().updateComment(request: request);
       if (!(actual.getComment() != nil)) { XCTFail("actual.getComment() != nil"); return; }
       if (!(actual.getComment()!.getText() == "A new Comment" + "\r\n")) { XCTFail("actual.getComment()!.getText() == " + "A new Comment" + "\r\n"); return; }
       if (!(actual.getComment()!.getRangeStart() != nil)) { XCTFail("actual.getComment()!.getRangeStart() != nil"); return; }
@@ -177,7 +177,7 @@ class CommentTests: BaseTestContext {
         .setInitial(initial: "IA")
         .setText(text: "A new Comment");
       let request = UpdateCommentOnlineRequest(document: requestDocument, commentIndex: 0, comment: requestComment as! CommentUpdate);
-      _ = try super.getApi().updateCommentOnline(request: request);
+       _ = try super.getApi().updateCommentOnline(request: request);
     }
 
     // A test for DeleteComment.
@@ -187,14 +187,14 @@ class CommentTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteCommentRequest(name: remoteFileName, commentIndex: 0, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      try super.getApi().deleteComment(request: request);
+       try super.getApi().deleteComment(request: request);
     }
 
     // A test for DeleteComment online.
     func testDeleteCommentOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteCommentOnlineRequest(document: requestDocument, commentIndex: 0);
-      _ = try super.getApi().deleteCommentOnline(request: request);
+       _ = try super.getApi().deleteCommentOnline(request: request);
     }
 
     // A test for DeleteComments.
@@ -204,13 +204,13 @@ class CommentTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteCommentsRequest(name: remoteFileName, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      try super.getApi().deleteComments(request: request);
+       try super.getApi().deleteComments(request: request);
     }
 
     // A test for DeleteComments online.
     func testDeleteCommentsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteCommentsOnlineRequest(document: requestDocument);
-      _ = try super.getApi().deleteCommentsOnline(request: request);
+       _ = try super.getApi().deleteCommentsOnline(request: request);
     }
 }

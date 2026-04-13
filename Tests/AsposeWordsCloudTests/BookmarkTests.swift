@@ -56,14 +56,14 @@ class BookmarkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetBookmarksRequest(name: remoteFileName, folder: remoteDataFolder);
-      _ = try super.getApi().getBookmarks(request: request);
+       _ = try super.getApi().getBookmarks(request: request);
     }
 
     // Test for getting bookmarks from document online.
     func testGetBookmarksOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetBookmarksOnlineRequest(document: requestDocument);
-      _ = try super.getApi().getBookmarksOnline(request: request);
+       _ = try super.getApi().getBookmarksOnline(request: request);
     }
 
     // Test for getting bookmark by specified name.
@@ -73,14 +73,14 @@ class BookmarkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetBookmarkByNameRequest(name: remoteFileName, bookmarkName: bookmarkName, folder: remoteDataFolder);
-      _ = try super.getApi().getBookmarkByName(request: request);
+       _ = try super.getApi().getBookmarkByName(request: request);
     }
 
     // Test for getting bookmark by specified name online.
     func testGetBookmarkByNameOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetBookmarkByNameOnlineRequest(document: requestDocument, bookmarkName: bookmarkName);
-      _ = try super.getApi().getBookmarkByNameOnline(request: request);
+       _ = try super.getApi().getBookmarkByNameOnline(request: request);
     }
 
     // Test for updating existed bookmark.
@@ -94,7 +94,7 @@ class BookmarkTests: BaseTestContext {
         .setName(name: bookmarkName)
         .setText(text: bookmarkText);
       let request = UpdateBookmarkRequest(name: remoteFileName, bookmarkName: bookmarkName, bookmarkData: requestBookmarkData, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      _ = try super.getApi().updateBookmark(request: request);
+       _ = try super.getApi().updateBookmark(request: request);
     }
 
     // Test for updating existed bookmark online.
@@ -106,7 +106,7 @@ class BookmarkTests: BaseTestContext {
         .setName(name: bookmarkName)
         .setText(text: "This will be the text for Aspose");
       let request = UpdateBookmarkOnlineRequest(document: requestDocument, bookmarkName: bookmarkName, bookmarkData: requestBookmarkData, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      _ = try super.getApi().updateBookmarkOnline(request: request);
+       _ = try super.getApi().updateBookmarkOnline(request: request);
     }
 
     // Test for deleting bookmark by specified name.
@@ -116,14 +116,14 @@ class BookmarkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteBookmarkRequest(name: remoteFileName, bookmarkName: bookmarkName, folder: remoteDataFolder);
-      try super.getApi().deleteBookmark(request: request);
+       try super.getApi().deleteBookmark(request: request);
     }
 
     // Test for deleting bookmark by specified name online.
     func testDeleteBookmarkOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteBookmarkOnlineRequest(document: requestDocument, bookmarkName: bookmarkName);
-      _ = try super.getApi().deleteBookmarkOnline(request: request);
+       _ = try super.getApi().deleteBookmarkOnline(request: request);
     }
 
     // Test for deleting all bookmarks from document.
@@ -133,14 +133,14 @@ class BookmarkTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteBookmarksRequest(name: remoteFileName, folder: remoteDataFolder);
-      try super.getApi().deleteBookmarks(request: request);
+       try super.getApi().deleteBookmarks(request: request);
     }
 
     // Test for deleting all bookmarks from document online.
     func testDeleteBookmarksOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteBookmarksOnlineRequest(document: requestDocument);
-      _ = try super.getApi().deleteBookmarksOnline(request: request);
+       _ = try super.getApi().deleteBookmarksOnline(request: request);
     }
 
     // Test for inserting new bookmark.
@@ -161,7 +161,7 @@ class BookmarkTests: BaseTestContext {
         .setStartRange(startRange: requestBookmarkStartRange as! PositionInsideNode)
         .setEndRange(endRange: requestBookmarkEndRange as! PositionInsideNode);
       let request = InsertBookmarkRequest(name: remoteFileName, bookmark: requestBookmark, folder: remoteDataFolder);
-      _ = try super.getApi().insertBookmark(request: request);
+       _ = try super.getApi().insertBookmark(request: request);
     }
 
     // Test for inserting new bookmark online.
@@ -179,6 +179,6 @@ class BookmarkTests: BaseTestContext {
         .setStartRange(startRange: requestBookmarkStartRange as! PositionInsideNode)
         .setEndRange(endRange: requestBookmarkEndRange as! PositionInsideNode);
       let request = InsertBookmarkOnlineRequest(document: requestDocument, bookmark: requestBookmark);
-      _ = try super.getApi().insertBookmarkOnline(request: request);
+       _ = try super.getApi().insertBookmarkOnline(request: request);
     }
 }

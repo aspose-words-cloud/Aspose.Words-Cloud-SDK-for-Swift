@@ -53,14 +53,14 @@ class StructuredDocumentTagTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetStructuredDocumentTagsRequest(name: remoteFileName, nodePath: "sections/0/body/paragraphs/0", folder: remoteDataFolder);
-      _ = try super.getApi().getStructuredDocumentTags(request: request);
+       _ = try super.getApi().getStructuredDocumentTags(request: request);
     }
 
     // Test for getting SDT objects from document online.
     func testGetStructuredDocumentTagsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetStructuredDocumentTagsOnlineRequest(document: requestDocument, nodePath: "sections/0/body/paragraphs/0");
-      _ = try super.getApi().getStructuredDocumentTagsOnline(request: request);
+       _ = try super.getApi().getStructuredDocumentTagsOnline(request: request);
     }
 
     // Test for getting SDT object from document.
@@ -70,14 +70,14 @@ class StructuredDocumentTagTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetStructuredDocumentTagRequest(name: remoteFileName, index: 0, nodePath: "sections/0/body/paragraphs/0", folder: remoteDataFolder);
-      _ = try super.getApi().getStructuredDocumentTag(request: request);
+       _ = try super.getApi().getStructuredDocumentTag(request: request);
     }
 
     // Test for getting SDT object from document online.
     func testGetStructuredDocumentTagOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetStructuredDocumentTagOnlineRequest(document: requestDocument, index: 0, nodePath: "sections/0/body/paragraphs/0");
-      _ = try super.getApi().getStructuredDocumentTagOnline(request: request);
+       _ = try super.getApi().getStructuredDocumentTagOnline(request: request);
     }
 
     // Test for adding SDT object.
@@ -90,7 +90,7 @@ class StructuredDocumentTagTests: BaseTestContext {
         .setLevel(level: StructuredDocumentTagInsert.Level.inline)
         .setSdtType(sdtType: StructuredDocumentTagInsert.SdtType.comboBox);
       let request = InsertStructuredDocumentTagRequest(name: remoteFileName, structuredDocumentTag: requestStructuredDocumentTag, nodePath: "sections/0/body/paragraphs/0", folder: remoteDataFolder);
-      _ = try super.getApi().insertStructuredDocumentTag(request: request);
+       _ = try super.getApi().insertStructuredDocumentTag(request: request);
     }
 
     // Test for adding SDT object online.
@@ -100,7 +100,7 @@ class StructuredDocumentTagTests: BaseTestContext {
         .setLevel(level: StructuredDocumentTagInsert.Level.inline)
         .setSdtType(sdtType: StructuredDocumentTagInsert.SdtType.comboBox);
       let request = InsertStructuredDocumentTagOnlineRequest(document: requestDocument, structuredDocumentTag: requestStructuredDocumentTag, nodePath: "sections/0/body/paragraphs/0");
-      _ = try super.getApi().insertStructuredDocumentTagOnline(request: request);
+       _ = try super.getApi().insertStructuredDocumentTagOnline(request: request);
     }
 
     // Test for deleting SDT object.
@@ -110,14 +110,14 @@ class StructuredDocumentTagTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteStructuredDocumentTagRequest(name: remoteFileName, index: 0, nodePath: "sections/0/body/paragraphs/0", folder: remoteDataFolder);
-      try super.getApi().deleteStructuredDocumentTag(request: request);
+       try super.getApi().deleteStructuredDocumentTag(request: request);
     }
 
     // Test for deleting SDT object online.
     func testDeleteStructuredDocumentTagOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = DeleteStructuredDocumentTagOnlineRequest(document: requestDocument, index: 0, nodePath: "sections/0/body/paragraphs/0");
-      _ = try super.getApi().deleteStructuredDocumentTagOnline(request: request);
+       _ = try super.getApi().deleteStructuredDocumentTagOnline(request: request);
     }
 
     // Test for updating SDT object.
@@ -139,7 +139,7 @@ class StructuredDocumentTagTests: BaseTestContext {
       let requestStructuredDocumentTag = StructuredDocumentTagUpdate()
         .setListItems(listItems: requestStructuredDocumentTagListItems);
       let request = UpdateStructuredDocumentTagRequest(name: remoteFileName, index: 0, structuredDocumentTag: requestStructuredDocumentTag as! StructuredDocumentTagUpdate, nodePath: "sections/0/body/paragraphs/0", folder: remoteDataFolder);
-      _ = try super.getApi().updateStructuredDocumentTag(request: request);
+       _ = try super.getApi().updateStructuredDocumentTag(request: request);
     }
 
     // Test for updating SDT object online.
@@ -158,6 +158,6 @@ class StructuredDocumentTagTests: BaseTestContext {
       let requestStructuredDocumentTag = StructuredDocumentTagUpdate()
         .setListItems(listItems: requestStructuredDocumentTagListItems);
       let request = UpdateStructuredDocumentTagOnlineRequest(document: requestDocument, structuredDocumentTag: requestStructuredDocumentTag as! StructuredDocumentTagUpdate, index: 0, nodePath: "sections/0/body/paragraphs/0");
-      _ = try super.getApi().updateStructuredDocumentTagOnline(request: request);
+       _ = try super.getApi().updateStructuredDocumentTagOnline(request: request);
     }
 }

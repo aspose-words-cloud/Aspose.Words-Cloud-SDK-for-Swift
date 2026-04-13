@@ -70,7 +70,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFieldsRequest(name: remoteFileName, nodePath: "sections/0", folder: remoteDataFolder);
-      let actual = try super.getApi().getFields(request: request);
+       let actual = try super.getApi().getFields(request: request);
       if (!(actual.getFields() != nil)) { XCTFail("actual.getFields() != nil"); return; }
       if (!(actual.getFields()!.getList() != nil)) { XCTFail("actual.getFields()!.getList() != nil"); return; }
       if (!(actual.getFields()!.getList()?.count == 1)) { XCTFail("actual.getFields()!.getList()?.count == 1"); return; }
@@ -81,7 +81,7 @@ class FieldTests: BaseTestContext {
     func testGetFieldsOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/GetField.docx", isDirectory: false))!;
       let request = GetFieldsOnlineRequest(document: requestDocument, nodePath: "sections/0");
-      _ = try super.getApi().getFieldsOnline(request: request);
+       _ = try super.getApi().getFieldsOnline(request: request);
     }
 
     // Test for getting fields without node path.
@@ -92,7 +92,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFieldsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getFields(request: request);
+       let actual = try super.getApi().getFields(request: request);
       if (!(actual.getFields() != nil)) { XCTFail("actual.getFields() != nil"); return; }
       if (!(actual.getFields()!.getList() != nil)) { XCTFail("actual.getFields()!.getList() != nil"); return; }
       if (!(actual.getFields()!.getList()?.count == 1)) { XCTFail("actual.getFields()!.getList()?.count == 1"); return; }
@@ -107,7 +107,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFieldRequest(name: remoteFileName, index: 0, nodePath: "sections/0/paragraphs/0", folder: remoteDataFolder);
-      let actual = try super.getApi().getField(request: request);
+       let actual = try super.getApi().getField(request: request);
       if (!(actual.getField() != nil)) { XCTFail("actual.getField() != nil"); return; }
       if (!(actual.getField()!.getResult() == "1")) { XCTFail("actual.getField()!.getResult() == " + "1"); return; }
     }
@@ -116,7 +116,7 @@ class FieldTests: BaseTestContext {
     func testGetFieldOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/GetField.docx", isDirectory: false))!;
       let request = GetFieldOnlineRequest(document: requestDocument, index: 0, nodePath: "sections/0/paragraphs/0");
-      _ = try super.getApi().getFieldOnline(request: request);
+       _ = try super.getApi().getFieldOnline(request: request);
     }
 
     // Test for getting field by index without node path.
@@ -127,7 +127,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetFieldRequest(name: remoteFileName, index: 0, folder: remoteDataFolder);
-      let actual = try super.getApi().getField(request: request);
+       let actual = try super.getApi().getField(request: request);
       if (!(actual.getField() != nil)) { XCTFail("actual.getField() != nil"); return; }
       if (!(actual.getField()!.getResult() == "1")) { XCTFail("actual.getField()!.getResult() == " + "1"); return; }
     }
@@ -142,7 +142,7 @@ class FieldTests: BaseTestContext {
       let requestField = FieldInsert()
         .setFieldCode(fieldCode: "{ NUMPAGES }");
       let request = InsertFieldRequest(name: remoteFileName, field: requestField as! FieldInsert, nodePath: "sections/0/paragraphs/0", folder: remoteDataFolder);
-      let actual = try super.getApi().insertField(request: request);
+       let actual = try super.getApi().insertField(request: request);
       if (!(actual.getField() != nil)) { XCTFail("actual.getField() != nil"); return; }
       if (!(actual.getField()!.getFieldCode() == "{ NUMPAGES }")) { XCTFail("actual.getField()!.getFieldCode() == " + "{ NUMPAGES }"); return; }
       if (!(actual.getField()!.getNodeId() == "0.0.0.1")) { XCTFail("actual.getField()!.getNodeId() == " + "0.0.0.1"); return; }
@@ -154,7 +154,7 @@ class FieldTests: BaseTestContext {
       let requestField = FieldInsert()
         .setFieldCode(fieldCode: "{ NUMPAGES }");
       let request = InsertFieldOnlineRequest(document: requestDocument, field: requestField as! FieldInsert, nodePath: "sections/0/paragraphs/0");
-      _ = try super.getApi().insertFieldOnline(request: request);
+       _ = try super.getApi().insertFieldOnline(request: request);
     }
 
     // Test for putting field without node path.
@@ -167,7 +167,7 @@ class FieldTests: BaseTestContext {
       let requestField = FieldInsert()
         .setFieldCode(fieldCode: "{ NUMPAGES }");
       let request = InsertFieldRequest(name: remoteFileName, field: requestField as! FieldInsert, folder: remoteDataFolder);
-      let actual = try super.getApi().insertField(request: request);
+       let actual = try super.getApi().insertField(request: request);
       if (!(actual.getField() != nil)) { XCTFail("actual.getField() != nil"); return; }
       if (!(actual.getField()!.getFieldCode() == "{ NUMPAGES }")) { XCTFail("actual.getField()!.getFieldCode() == " + "{ NUMPAGES }"); return; }
       if (!(actual.getField()!.getNodeId() == "5.0.22.0")) { XCTFail("actual.getField()!.getNodeId() == " + "5.0.22.0"); return; }
@@ -183,7 +183,7 @@ class FieldTests: BaseTestContext {
       let requestField = FieldUpdate()
         .setFieldCode(fieldCode: "{ NUMPAGES }");
       let request = UpdateFieldRequest(name: remoteFileName, index: 0, field: requestField as! FieldUpdate, nodePath: "sections/0/paragraphs/0", folder: remoteDataFolder);
-      let actual = try super.getApi().updateField(request: request);
+       let actual = try super.getApi().updateField(request: request);
       if (!(actual.getField() != nil)) { XCTFail("actual.getField() != nil"); return; }
       if (!(actual.getField()!.getFieldCode() == "{ NUMPAGES }")) { XCTFail("actual.getField()!.getFieldCode() == " + "{ NUMPAGES }"); return; }
       if (!(actual.getField()!.getNodeId() == "0.0.0.0")) { XCTFail("actual.getField()!.getNodeId() == " + "0.0.0.0"); return; }
@@ -195,7 +195,7 @@ class FieldTests: BaseTestContext {
       let requestField = FieldUpdate()
         .setFieldCode(fieldCode: "{ NUMPAGES }");
       let request = UpdateFieldOnlineRequest(document: requestDocument, field: requestField as! FieldUpdate, index: 0, nodePath: "sections/0/paragraphs/0");
-      _ = try super.getApi().updateFieldOnline(request: request);
+       _ = try super.getApi().updateFieldOnline(request: request);
     }
 
     // Test for inserting page numbers field.
@@ -211,7 +211,7 @@ class FieldTests: BaseTestContext {
         .setIsTop(isTop: true)
         .setSetPageNumberOnFirstPage(setPageNumberOnFirstPage: true);
       let request = InsertPageNumbersRequest(name: remoteFileName, pageNumber: requestPageNumber, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().insertPageNumbers(request: request);
+       let actual = try super.getApi().insertPageNumbers(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestInsertPageNumbers.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestInsertPageNumbers.docx"); return; }
     }
@@ -227,7 +227,7 @@ class FieldTests: BaseTestContext {
         .setIsTop(isTop: true)
         .setSetPageNumberOnFirstPage(setPageNumberOnFirstPage: true);
       let request = InsertPageNumbersOnlineRequest(document: requestDocument, pageNumber: requestPageNumber);
-      _ = try super.getApi().insertPageNumbersOnline(request: request);
+       _ = try super.getApi().insertPageNumbersOnline(request: request);
     }
 
     // Test for deleting field.
@@ -238,14 +238,14 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldRequest(name: remoteFileName, index: 0, nodePath: "sections/0/paragraphs/0", folder: remoteDataFolder);
-      try super.getApi().deleteField(request: request);
+       try super.getApi().deleteField(request: request);
     }
 
     // Test for deleting field online.
     func testDeleteFieldOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/GetField.docx", isDirectory: false))!;
       let request = DeleteFieldOnlineRequest(document: requestDocument, index: 0, nodePath: "sections/0/paragraphs/0");
-      _ = try super.getApi().deleteFieldOnline(request: request);
+       _ = try super.getApi().deleteFieldOnline(request: request);
     }
 
     // Test for deleting field without node path.
@@ -256,7 +256,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(fieldFolder + "/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldRequest(name: remoteFileName, index: 0, folder: remoteDataFolder);
-      try super.getApi().deleteField(request: request);
+       try super.getApi().deleteField(request: request);
     }
 
     // Test for deleting paragraph fields.
@@ -267,7 +267,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldsRequest(name: remoteFileName, nodePath: "paragraphs/0", folder: remoteDataFolder);
-      try super.getApi().deleteFields(request: request);
+       try super.getApi().deleteFields(request: request);
     }
 
     // Test for deleting paragraph fields without node path.
@@ -278,7 +278,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldsRequest(name: remoteFileName, folder: remoteDataFolder);
-      try super.getApi().deleteFields(request: request);
+       try super.getApi().deleteFields(request: request);
     }
 
     // Test for deleting section fields.
@@ -289,7 +289,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldsRequest(name: remoteFileName, nodePath: "sections/0", folder: remoteDataFolder);
-      try super.getApi().deleteFields(request: request);
+       try super.getApi().deleteFields(request: request);
     }
 
     // Test for deleting section fields without node path.
@@ -300,7 +300,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldsRequest(name: remoteFileName, folder: remoteDataFolder);
-      try super.getApi().deleteFields(request: request);
+       try super.getApi().deleteFields(request: request);
     }
 
     // Test for deleting paragraph fields in section.
@@ -311,7 +311,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldsRequest(name: remoteFileName, nodePath: "sections/0/paragraphs/0", folder: remoteDataFolder);
-      try super.getApi().deleteFields(request: request);
+       try super.getApi().deleteFields(request: request);
     }
 
     // Test for deleting fields.
@@ -322,7 +322,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = DeleteFieldsRequest(name: remoteFileName, nodePath: "", folder: remoteDataFolder);
-      try super.getApi().deleteFields(request: request);
+       try super.getApi().deleteFields(request: request);
     }
 
     // Test for deleting fields online.
@@ -331,7 +331,7 @@ class FieldTests: BaseTestContext {
 
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFileName, isDirectory: false))!;
       let request = DeleteFieldsOnlineRequest(document: requestDocument, nodePath: "");
-      _ = try super.getApi().deleteFieldsOnline(request: request);
+       _ = try super.getApi().deleteFieldsOnline(request: request);
     }
 
     // Test for posting updated fields.
@@ -342,7 +342,7 @@ class FieldTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/" + localFileName, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = UpdateFieldsRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().updateFields(request: request);
+       let actual = try super.getApi().updateFields(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestUpdateDocumentFields.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestUpdateDocumentFields.docx"); return; }
     }
@@ -353,6 +353,6 @@ class FieldTests: BaseTestContext {
 
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = UpdateFieldsOnlineRequest(document: requestDocument);
-      _ = try super.getApi().updateFieldsOnline(request: request);
+       _ = try super.getApi().updateFieldsOnline(request: request);
     }
 }

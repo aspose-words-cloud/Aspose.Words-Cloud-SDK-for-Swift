@@ -188,4 +188,8 @@ public class GetHeaderFooterOnlineRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return try ObjectSerializer.deserialize(type: HeaderFooterResponse.self, from: data);
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

@@ -238,4 +238,8 @@ public class RenderDrawingObjectOnlineRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return data;
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

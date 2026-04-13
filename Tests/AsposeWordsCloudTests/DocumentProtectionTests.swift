@@ -52,7 +52,7 @@ class DocumentProtectionTests: BaseTestContext {
         .setProtectionPassword(protectionPassword: "123")
         .setProtectionType(protectionType: ProtectionRequestV2.ProtectionType.readOnly);
       let request = ProtectDocumentRequest(name: remoteFileName, protectionRequest: requestProtectionRequest, folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/" + remoteFileName);
-      let actual = try super.getApi().protectDocument(request: request);
+       let actual = try super.getApi().protectDocument(request: request);
       if (!(actual.getProtectionData() != nil)) { XCTFail("actual.getProtectionData() != nil"); return; }
 
     }
@@ -64,7 +64,7 @@ class DocumentProtectionTests: BaseTestContext {
         .setProtectionPassword(protectionPassword: "123")
         .setProtectionType(protectionType: ProtectionRequestV2.ProtectionType.readOnly);
       let request = ProtectDocumentOnlineRequest(document: requestDocument, protectionRequest: requestProtectionRequest);
-      _ = try super.getApi().protectDocumentOnline(request: request);
+       _ = try super.getApi().protectDocumentOnline(request: request);
     }
 
     // Test for getting document protection.
@@ -75,14 +75,14 @@ class DocumentProtectionTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFilePath, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentProtectionRequest(name: remoteFileName, folder: remoteDataFolder);
-      _ = try super.getApi().getDocumentProtection(request: request);
+       _ = try super.getApi().getDocumentProtection(request: request);
     }
 
     // Test for getting document protection.
     func testGetDocumentProtectionOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetDocumentProtectionOnlineRequest(document: requestDocument);
-      _ = try super.getApi().getDocumentProtectionOnline(request: request);
+       _ = try super.getApi().getDocumentProtectionOnline(request: request);
     }
 
     // Test for deleting unprotect document.
@@ -93,7 +93,7 @@ class DocumentProtectionTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFilePath, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = UnprotectDocumentRequest(name: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().unprotectDocument(request: request);
+       let actual = try super.getApi().unprotectDocument(request: request);
       if (!(actual.getProtectionData() != nil)) { XCTFail("actual.getProtectionData() != nil"); return; }
 
     }
@@ -104,6 +104,6 @@ class DocumentProtectionTests: BaseTestContext {
 
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFilePath, isDirectory: false))!;
       let request = UnprotectDocumentOnlineRequest(document: requestDocument);
-      _ = try super.getApi().unprotectDocumentOnline(request: request);
+       _ = try super.getApi().unprotectDocumentOnline(request: request);
     }
 }

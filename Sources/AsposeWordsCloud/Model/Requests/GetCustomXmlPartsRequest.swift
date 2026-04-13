@@ -198,4 +198,8 @@ public class GetCustomXmlPartsRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return try ObjectSerializer.deserialize(type: CustomXmlPartsResponse.self, from: data);
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

@@ -32,7 +32,9 @@ import XCTest
 class SplitDocumentToFormatTests: BaseTestContext {
     static var allTests = [
         ("testSplitDocument", testSplitDocument),
-        ("testSplitDocumentOnline", testSplitDocumentOnline)
+        ("testSplitDocumentJob", testSplitDocumentJob),
+        ("testSplitDocumentOnline", testSplitDocumentOnline),
+        ("testSplitDocumentOnlineJob", testSplitDocumentOnlineJob)
     ];
 
     let remoteDataFolder = BaseTestContext.getRemoteTestDataFolder() + "/DocumentActions/SplitDocument";
@@ -45,7 +47,21 @@ class SplitDocumentToFormatTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = SplitDocumentRequest(name: remoteFileName, format: "text", folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/TestSplitDocument.text", from: 1, to: 2);
-      let actual = try super.getApi().splitDocument(request: request);
+       let actual = try super.getApi().splitDocument(request: request);
+      if (!(actual.getSplitResult() != nil)) { XCTFail("actual.getSplitResult() != nil"); return; }
+      if (!(actual.getSplitResult()!.getPages() != nil)) { XCTFail("actual.getSplitResult()!.getPages() != nil"); return; }
+      if (!(actual.getSplitResult()!.getPages()?.count == 2)) { XCTFail("actual.getSplitResult()!.getPages()?.count == 2"); return; }
+    }
+
+    // Test for document splitting job.
+    func testSplitDocumentJob() throws {
+      let remoteFileName = "TestSplitDocument.docx";
+
+      try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
+
+      let request = SplitDocumentJobRequest(name: remoteFileName, format: "text", folder: remoteDataFolder, destFileName: BaseTestContext.getRemoteTestOut() + "/TestSplitDocument.text", from: 1, to: 2);
+      let jobHandler = try super.getApi().splitDocumentJob(request: request);
+      let actual = try jobHandler.waitResult(updateInterval: 3.0);
       if (!(actual.getSplitResult() != nil)) { XCTFail("actual.getSplitResult() != nil"); return; }
       if (!(actual.getSplitResult()!.getPages() != nil)) { XCTFail("actual.getSplitResult()!.getPages() != nil"); return; }
       if (!(actual.getSplitResult()!.getPages()?.count == 2)) { XCTFail("actual.getSplitResult()!.getPages()?.count == 2"); return; }
@@ -55,6 +71,14 @@ class SplitDocumentToFormatTests: BaseTestContext {
     func testSplitDocumentOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = SplitDocumentOnlineRequest(document: requestDocument, format: "text", destFileName: BaseTestContext.getRemoteTestOut() + "/TestSplitDocument.text", from: 1, to: 2);
-      _ = try super.getApi().splitDocumentOnline(request: request);
+       _ = try super.getApi().splitDocumentOnline(request: request);
+    }
+
+    // Test for document splitting online job.
+    func testSplitDocumentOnlineJob() throws {
+      let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
+      let request = SplitDocumentOnlineJobRequest(document: requestDocument, format: "text", destFileName: BaseTestContext.getRemoteTestOut() + "/TestSplitDocument.text", from: 1, to: 2);
+      let jobHandler = try super.getApi().splitDocumentOnlineJob(request: request);
+      _ = try jobHandler.waitResult(updateInterval: 3.0);
     }
 }

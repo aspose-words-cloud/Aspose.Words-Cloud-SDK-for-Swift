@@ -228,4 +228,8 @@ public class DeleteCommentOnlineRequest : WordsApiRequest {
     public func deserializeResponse(data : Data, headers : [String: String]) throws -> Any? {
         return try ObjectSerializer.parseFilesCollection(data: data, headers: headers);
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

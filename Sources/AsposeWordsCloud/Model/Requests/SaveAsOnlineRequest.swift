@@ -197,4 +197,8 @@ public class SaveAsOnlineRequest : WordsApiRequest {
             document: try ObjectSerializer.parseFilesCollection(part: try ObjectSerializer.getMultipartByName(multipart: multipart, name: "Document"))
         );
     }
+
+    public func getOriginalRequest() -> WordsApiRequest {
+        return self;
+    }
 }

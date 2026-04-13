@@ -46,7 +46,7 @@ class LoadWebDocumentTests: BaseTestContext {
         .setSaveOptions(saveOptions: requestDataSaveOptions as! DocSaveOptionsData)
         .setLoadingDocumentUrl(loadingDocumentUrl: "http://google.com");
       let request = LoadWebDocumentRequest(data: requestData);
-      let actual = try super.getApi().loadWebDocument(request: request);
+       let actual = try super.getApi().loadWebDocument(request: request);
       if (!(actual.getSaveResult() != nil)) { XCTFail("actual.getSaveResult() != nil"); return; }
       if (!(actual.getSaveResult()!.getDestDocument() != nil)) { XCTFail("actual.getSaveResult()!.getDestDocument() != nil"); return; }
       if (!(actual.getSaveResult()!.getDestDocument()!.getHref() == "google.doc")) { XCTFail("actual.getSaveResult()!.getDestDocument()!.getHref() == " + "google.doc"); return; }
@@ -63,6 +63,6 @@ class LoadWebDocumentTests: BaseTestContext {
         .setSaveOptions(saveOptions: requestDataSaveOptions as! DocSaveOptionsData)
         .setLoadingDocumentUrl(loadingDocumentUrl: "http://google.com");
       let request = LoadWebDocumentOnlineRequest(data: requestData);
-      _ = try super.getApi().loadWebDocumentOnline(request: request);
+       _ = try super.getApi().loadWebDocumentOnline(request: request);
     }
 }

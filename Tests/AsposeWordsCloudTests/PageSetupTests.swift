@@ -50,7 +50,7 @@ class PageSetupTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetSectionPageSetupRequest(name: remoteFileName, sectionIndex: 0, folder: remoteDataFolder);
-      let actual = try super.getApi().getSectionPageSetup(request: request);
+       let actual = try super.getApi().getSectionPageSetup(request: request);
       if (!(actual.getPageSetup() != nil)) { XCTFail("actual.getPageSetup() != nil"); return; }
       if (!(actual.getPageSetup()!.getLineStartingNumber() == 1)) { XCTFail("actual.getPageSetup()!.getLineStartingNumber() == 1"); return; }
     }
@@ -59,7 +59,7 @@ class PageSetupTests: BaseTestContext {
     func testGetSectionPageSetupOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
       let request = GetSectionPageSetupOnlineRequest(document: requestDocument, sectionIndex: 0);
-      _ = try super.getApi().getSectionPageSetupOnline(request: request);
+       _ = try super.getApi().getSectionPageSetupOnline(request: request);
     }
 
     // Test for updating page settings.
@@ -74,7 +74,7 @@ class PageSetupTests: BaseTestContext {
         .setPaperSize(paperSize: PageSetup.PaperSize.a5)
         .setRtlGutter(rtlGutter: true);
       let request = UpdateSectionPageSetupRequest(name: remoteFileName, sectionIndex: 0, pageSetup: requestPageSetup, folder: remoteDataFolder);
-      let actual = try super.getApi().updateSectionPageSetup(request: request);
+       let actual = try super.getApi().updateSectionPageSetup(request: request);
       if (!(actual.getPageSetup() != nil)) { XCTFail("actual.getPageSetup() != nil"); return; }
       if (!(actual.getPageSetup()!.getRtlGutter() == true)) { XCTFail("actual.getPageSetup()!.getRtlGutter() == true"); return; }
 
@@ -90,7 +90,7 @@ class PageSetupTests: BaseTestContext {
         .setPaperSize(paperSize: PageSetup.PaperSize.a5)
         .setRtlGutter(rtlGutter: true);
       let request = UpdateSectionPageSetupOnlineRequest(document: requestDocument, sectionIndex: 0, pageSetup: requestPageSetup);
-      _ = try super.getApi().updateSectionPageSetupOnline(request: request);
+       _ = try super.getApi().updateSectionPageSetupOnline(request: request);
     }
 
     // Test for page rendering.
@@ -100,13 +100,13 @@ class PageSetupTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localTextFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = RenderPageRequest(name: remoteFileName, pageIndex: 1, format: "jpg", folder: remoteDataFolder);
-      _ = try super.getApi().renderPage(request: request);
+       _ = try super.getApi().renderPage(request: request);
     }
 
     // Test for page rendering.
     func testGetRenderPageOnline() throws {
       let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localTextFile, isDirectory: false))!;
       let request = RenderPageOnlineRequest(document: requestDocument, pageIndex: 1, format: "jpg");
-      _ = try super.getApi().renderPageOnline(request: request);
+       _ = try super.getApi().renderPageOnline(request: request);
     }
 }

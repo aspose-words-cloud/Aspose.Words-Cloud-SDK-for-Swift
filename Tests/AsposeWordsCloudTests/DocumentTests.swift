@@ -45,7 +45,7 @@ class DocumentTests: BaseTestContext {
       try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
 
       let request = GetDocumentRequest(documentName: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().getDocument(request: request);
+       let actual = try super.getApi().getDocument(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestGetDocument.docx")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestGetDocument.docx"); return; }
     }
@@ -55,7 +55,7 @@ class DocumentTests: BaseTestContext {
       let remoteFileName = "TestCreateDocument.doc";
 
       let request = CreateDocumentRequest(fileName: remoteFileName, folder: remoteDataFolder);
-      let actual = try super.getApi().createDocument(request: request);
+       let actual = try super.getApi().createDocument(request: request);
       if (!(actual.getDocument() != nil)) { XCTFail("actual.getDocument() != nil"); return; }
       if (!(actual.getDocument()!.getFileName() == "TestCreateDocument.doc")) { XCTFail("actual.getDocument()!.getFileName() == " + "TestCreateDocument.doc"); return; }
     }

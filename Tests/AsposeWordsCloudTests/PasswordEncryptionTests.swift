@@ -40,7 +40,7 @@ class PasswordEncryptionTests: BaseTestContext {
     // Test for getting a public key for password encryption.
     func testGetPublicKey() throws {
       let request = GetPublicKeyRequest();
-      let actual = try super.getApi().getPublicKey(request: request);
+       let actual = try super.getApi().getPublicKey(request: request);
       if (!(actual.getExponent() != nil)) { XCTFail("actual.getExponent() != nil"); return; }
       if (!(actual.getModulus() != nil)) { XCTFail("actual.getModulus() != nil"); return; }
     }
