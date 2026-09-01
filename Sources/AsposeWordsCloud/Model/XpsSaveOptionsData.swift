@@ -29,6 +29,23 @@ import Foundation
 
 // Container class for xps save options.
 public class XpsSaveOptionsData : FixedPageSaveOptionsData {
+    // Gets or sets a compression level used to save document.
+    // The default value is Normal.
+    public enum CompressionLevel : String, Codable
+    {
+        // Enum value "normal"
+        case normal = "Normal"
+
+        // Enum value "maximum"
+        case maximum = "Maximum"
+
+        // Enum value "fast"
+        case fast = "Fast"
+
+        // Enum value "superFast"
+        case superFast = "SuperFast"
+    }
+
     // Field of bookmarksOutlineLevel. Container class for xps save options.
     private var _bookmarksOutlineLevel : Int? = nil;
 
@@ -38,6 +55,18 @@ public class XpsSaveOptionsData : FixedPageSaveOptionsData {
         }
         set {
             self._bookmarksOutlineLevel = newValue;
+        }
+    }
+
+    // Field of compressionLevel. Container class for xps save options.
+    private var _compressionLevel : CompressionLevel? = nil;
+
+    public var compressionLevel : CompressionLevel? {
+        get {
+            return self._compressionLevel;
+        }
+        set {
+            self._compressionLevel = newValue;
         }
     }
 
@@ -100,6 +129,7 @@ public class XpsSaveOptionsData : FixedPageSaveOptionsData {
 
     private enum CodingKeys: String, CodingKey {
         case bookmarksOutlineLevel = "BookmarksOutlineLevel";
+        case compressionLevel = "CompressionLevel";
         case digitalSignatureDetails = "DigitalSignatureDetails";
         case headingsOutlineLevels = "HeadingsOutlineLevels";
         case outlineOptions = "OutlineOptions";
@@ -114,6 +144,10 @@ public class XpsSaveOptionsData : FixedPageSaveOptionsData {
     public required init(from json: [String: Any]) throws {
         try super.init(from: json);
         self.bookmarksOutlineLevel = json["BookmarksOutlineLevel"] as? Int;
+        if let raw_compressionLevel = json["CompressionLevel"] as? String {
+            self.compressionLevel = CompressionLevel(rawValue: raw_compressionLevel);
+        }
+
         if let raw_digitalSignatureDetails = json["DigitalSignatureDetails"] as? [String: Any] {
             self.digitalSignatureDetails = try ObjectSerializer.deserialize(type: DigitalSignatureDetails.self, from: raw_digitalSignatureDetails);
         }
@@ -130,6 +164,7 @@ public class XpsSaveOptionsData : FixedPageSaveOptionsData {
         try super.init(from: decoder);
         let container = try decoder.container(keyedBy: CodingKeys.self);
         self.bookmarksOutlineLevel = try container.decodeIfPresent(Int.self, forKey: .bookmarksOutlineLevel);
+        self.compressionLevel = try container.decodeIfPresent(CompressionLevel.self, forKey: .compressionLevel);
         self.digitalSignatureDetails = try container.decodeIfPresent(DigitalSignatureDetails.self, forKey: .digitalSignatureDetails);
         self.headingsOutlineLevels = try container.decodeIfPresent(Int.self, forKey: .headingsOutlineLevels);
         self.outlineOptions = try container.decodeIfPresent(OutlineOptionsData.self, forKey: .outlineOptions);
@@ -141,6 +176,9 @@ public class XpsSaveOptionsData : FixedPageSaveOptionsData {
         var container = encoder.container(keyedBy: CodingKeys.self);
         if (self.bookmarksOutlineLevel != nil) {
             try container.encode(self.bookmarksOutlineLevel, forKey: .bookmarksOutlineLevel);
+        }
+        if (self.compressionLevel != nil) {
+            try container.encode(self.compressionLevel, forKey: .compressionLevel);
         }
         if (self.digitalSignatureDetails != nil) {
             try container.encode(self.digitalSignatureDetails, forKey: .digitalSignatureDetails);
@@ -175,6 +213,18 @@ public class XpsSaveOptionsData : FixedPageSaveOptionsData {
     // Gets bookmarksOutlineLevel. Gets or sets the level in the XPS document outline at which to display Word bookmarks.
     public func getBookmarksOutlineLevel() -> Int? {
         return self.bookmarksOutlineLevel;
+    }
+
+
+    // Sets compressionLevel. Gets or sets a compression level used to save document. The default value is Normal.
+    public func setCompressionLevel(compressionLevel : CompressionLevel?) -> XpsSaveOptionsData {
+        self.compressionLevel = compressionLevel;
+        return self;
+    }
+
+    // Gets compressionLevel. Gets or sets a compression level used to save document. The default value is Normal.
+    public func getCompressionLevel() -> CompressionLevel? {
+        return self.compressionLevel;
     }
 
 
