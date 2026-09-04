@@ -362,6 +362,18 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         }
     }
 
+    // Field of generateFormFieldScripts. Container class for pdf save options.
+    private var _generateFormFieldScripts : Bool? = nil;
+
+    public var generateFormFieldScripts : Bool? {
+        get {
+            return self._generateFormFieldScripts;
+        }
+        set {
+            self._generateFormFieldScripts = newValue;
+        }
+    }
+
     // Field of headerFooterBookmarksExportMode. Container class for pdf save options.
     private var _headerFooterBookmarksExportMode : HeaderFooterBookmarksExportMode? = nil;
 
@@ -590,6 +602,7 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         case exportDocumentStructure = "ExportDocumentStructure";
         case exportLanguageToSpanTag = "ExportLanguageToSpanTag";
         case fontEmbeddingMode = "FontEmbeddingMode";
+        case generateFormFieldScripts = "GenerateFormFieldScripts";
         case headerFooterBookmarksExportMode = "HeaderFooterBookmarksExportMode";
         case imageColorSpaceExportMode = "ImageColorSpaceExportMode";
         case imageCompression = "ImageCompression";
@@ -651,6 +664,7 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
             self.fontEmbeddingMode = FontEmbeddingMode(rawValue: raw_fontEmbeddingMode);
         }
 
+        self.generateFormFieldScripts = json["GenerateFormFieldScripts"] as? Bool;
         if let raw_headerFooterBookmarksExportMode = json["HeaderFooterBookmarksExportMode"] as? String {
             self.headerFooterBookmarksExportMode = HeaderFooterBookmarksExportMode(rawValue: raw_headerFooterBookmarksExportMode);
         }
@@ -705,6 +719,7 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         self.exportDocumentStructure = try container.decodeIfPresent(Bool.self, forKey: .exportDocumentStructure);
         self.exportLanguageToSpanTag = try container.decodeIfPresent(Bool.self, forKey: .exportLanguageToSpanTag);
         self.fontEmbeddingMode = try container.decodeIfPresent(FontEmbeddingMode.self, forKey: .fontEmbeddingMode);
+        self.generateFormFieldScripts = try container.decodeIfPresent(Bool.self, forKey: .generateFormFieldScripts);
         self.headerFooterBookmarksExportMode = try container.decodeIfPresent(HeaderFooterBookmarksExportMode.self, forKey: .headerFooterBookmarksExportMode);
         self.imageColorSpaceExportMode = try container.decodeIfPresent(ImageColorSpaceExportMode.self, forKey: .imageColorSpaceExportMode);
         self.imageCompression = try container.decodeIfPresent(String.self, forKey: .imageCompression);
@@ -768,6 +783,9 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
         }
         if (self.fontEmbeddingMode != nil) {
             try container.encode(self.fontEmbeddingMode, forKey: .fontEmbeddingMode);
+        }
+        if (self.generateFormFieldScripts != nil) {
+            try container.encode(self.generateFormFieldScripts, forKey: .generateFormFieldScripts);
         }
         if (self.headerFooterBookmarksExportMode != nil) {
             try container.encode(self.headerFooterBookmarksExportMode, forKey: .headerFooterBookmarksExportMode);
@@ -1001,6 +1019,18 @@ public class PdfSaveOptionsData : FixedPageSaveOptionsData {
     // Gets fontEmbeddingMode. Gets or sets the font embedding mode.
     public func getFontEmbeddingMode() -> FontEmbeddingMode? {
         return self.fontEmbeddingMode;
+    }
+
+
+    // Sets generateFormFieldScripts. Gets or sets a value determining  whether to generate scripts that emulate specific Microsoft Word form field behavior in PDF. Default is false. When this option is enabled, the exporter generates PDF JavaScript actions to emulate Microsoft Word form field behavior, such as date and time form fields with formatting and validation rules.When set to true, supported behavior will be exported as PDF JavaScript actions. When set to false, no form field scripts will be generated.Script execution depends on the PDF viewer. Some PDF viewers might ignore scripts, restrict script execution, or require the user to enable JavaScript.JavaScript actions are prohibited by PDF/A-1, PDF/A-2 and PDF/A-3 compliance. The false value will be used automatically in this case.
+    public func setGenerateFormFieldScripts(generateFormFieldScripts : Bool?) -> PdfSaveOptionsData {
+        self.generateFormFieldScripts = generateFormFieldScripts;
+        return self;
+    }
+
+    // Gets generateFormFieldScripts. Gets or sets a value determining  whether to generate scripts that emulate specific Microsoft Word form field behavior in PDF. Default is false. When this option is enabled, the exporter generates PDF JavaScript actions to emulate Microsoft Word form field behavior, such as date and time form fields with formatting and validation rules.When set to true, supported behavior will be exported as PDF JavaScript actions. When set to false, no form field scripts will be generated.Script execution depends on the PDF viewer. Some PDF viewers might ignore scripts, restrict script execution, or require the user to enable JavaScript.JavaScript actions are prohibited by PDF/A-1, PDF/A-2 and PDF/A-3 compliance. The false value will be used automatically in this case.
+    public func getGenerateFormFieldScripts() -> Bool? {
+        return self.generateFormFieldScripts;
     }
 
 
