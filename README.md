@@ -449,7 +449,7 @@ Add link to this repository as dependency to your Package.swift:
 
 dependencies: [
     // Dependencies declare other packages that this package depends on.
-    .package(url: "https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift.git", from: "26.9")
+    .package(url: "https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift.git", from: "26.10")
 ],
 targets: [
     // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -467,7 +467,7 @@ targets: [
 Add link to git repository as dependency to your Podfile:
 
 ```ruby
-pod 'AsposeWordsCloud', :git => 'https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift.git', :tag => '26.9'
+pod 'AsposeWordsCloud', :git => 'https://github.com/aspose-words-cloud/Aspose.Words-Cloud-SDK-for-Swift.git', :tag => '26.10'
 ```
 
 ## Getting Started
