@@ -29,6 +29,18 @@ import Foundation
 
 // Container class for compare documents.
 public class CompareData : Codable, WordsApiModel {
+    // Field of advancedOptions. Container class for compare documents.
+    private var _advancedOptions : AdvancedCompareOptions? = nil;
+
+    public var advancedOptions : AdvancedCompareOptions? {
+        get {
+            return self._advancedOptions;
+        }
+        set {
+            self._advancedOptions = newValue;
+        }
+    }
+
     // Field of author. Container class for compare documents.
     private var _author : String? = nil;
 
@@ -102,6 +114,7 @@ public class CompareData : Codable, WordsApiModel {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case advancedOptions = "AdvancedOptions";
         case author = "Author";
         case compareOptions = "CompareOptions";
         case comparingWithDocument = "ComparingWithDocument";
@@ -115,6 +128,10 @@ public class CompareData : Codable, WordsApiModel {
     }
 
     public required init(from json: [String: Any]) throws {
+        if let raw_advancedOptions = json["AdvancedOptions"] as? [String: Any] {
+            self.advancedOptions = try ObjectSerializer.deserialize(type: AdvancedCompareOptions.self, from: raw_advancedOptions);
+        }
+
         self.author = json["Author"] as? String;
         if let raw_compareOptions = json["CompareOptions"] as? [String: Any] {
             self.compareOptions = try ObjectSerializer.deserialize(type: CompareOptions.self, from: raw_compareOptions);
@@ -134,6 +151,7 @@ public class CompareData : Codable, WordsApiModel {
 
     public required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self);
+        self.advancedOptions = try container.decodeIfPresent(AdvancedCompareOptions.self, forKey: .advancedOptions);
         self.author = try container.decodeIfPresent(String.self, forKey: .author);
         self.compareOptions = try container.decodeIfPresent(CompareOptions.self, forKey: .compareOptions);
         self.comparingWithDocument = try container.decodeIfPresent(String.self, forKey: .comparingWithDocument);
@@ -149,6 +167,9 @@ public class CompareData : Codable, WordsApiModel {
 
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self);
+        if (self.advancedOptions != nil) {
+            try container.encode(self.advancedOptions, forKey: .advancedOptions);
+        }
         if (self.author != nil) {
             try container.encode(self.author, forKey: .author);
         }
@@ -187,10 +208,23 @@ public class CompareData : Codable, WordsApiModel {
         {
             throw WordsApiError.requiredParameterError(paramName: "fileReference");
         }
+        try self.advancedOptions?.validate();
         try self.compareOptions?.validate();
         try self.fileReference?.validate();
 
     }
+
+    // Sets advancedOptions. Gets or sets advanced compare options that might help to produce more precise comparison output.
+    public func setAdvancedOptions(advancedOptions : AdvancedCompareOptions?) -> CompareData {
+        self.advancedOptions = advancedOptions;
+        return self;
+    }
+
+    // Gets advancedOptions. Gets or sets advanced compare options that might help to produce more precise comparison output.
+    public func getAdvancedOptions() -> AdvancedCompareOptions? {
+        return self.advancedOptions;
+    }
+
 
     // Sets author. Gets or sets the initials of the author to use for revisions.
     public func setAuthor(author : String?) -> CompareData {
