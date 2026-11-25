@@ -107,6 +107,7 @@ class ObjectSerializer {
         "DrawingObject, _": DrawingObject.self,
         "DrawingObjectCollection, _": DrawingObjectCollection.self,
         "DrawingObjectInsert, _": DrawingObjectInsert.self,
+        "DrawingObjectInsertData, _": DrawingObjectInsertData.self,
         "DrawingObjectLink, _": DrawingObjectLink.self,
         "DrawingObjectResponse, _": DrawingObjectResponse.self,
         "DrawingObjectsResponse, _": DrawingObjectsResponse.self,

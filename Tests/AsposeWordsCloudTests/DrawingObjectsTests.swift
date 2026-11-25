@@ -49,6 +49,8 @@ class DrawingObjectsTests: BaseTestContext {
         ("testInsertDrawingObject", testInsertDrawingObject),
         ("testInsertDrawingObjectOnline", testInsertDrawingObjectOnline),
         ("testInsertDrawingObjectWithoutNodePath", testInsertDrawingObjectWithoutNodePath),
+        ("testInsertDrawingObjectByReference", testInsertDrawingObjectByReference),
+        ("testInsertDrawingObjectByReferenceOnline", testInsertDrawingObjectByReferenceOnline),
         ("testDeleteDrawingObject", testDeleteDrawingObject),
         ("testDeleteDrawingObjectOnline", testDeleteDrawingObjectOnline),
         ("testDeleteDrawingObjectWithoutNodePath", testDeleteDrawingObjectWithoutNodePath),
@@ -248,6 +250,46 @@ class DrawingObjectsTests: BaseTestContext {
       let requestImageFile = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent("Common/aspose-cloud.png", isDirectory: false))!;
       let request = InsertDrawingObjectRequest(name: remoteFileName, drawingObject: requestDrawingObject, imageFile: requestImageFile, folder: remoteDataFolder);
        _ = try super.getApi().insertDrawingObject(request: request);
+    }
+
+    // Test for adding drawing object with the image from the storage.
+    func testInsertDrawingObjectByReference() throws {
+      let remoteFileName = "TestInsertDrawingObjectByReference.docx";
+      let remoteImagePath = remoteDataFolder + "/TestInsertDrawingObjectByReference.png";
+
+      try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false), path: remoteDataFolder + "/" + remoteFileName);
+      try super.uploadFile(fileContent: getLocalTestDataFolder().appendingPathComponent("Common/aspose-cloud.png", isDirectory: false), path: remoteImagePath);
+
+      let requestDrawingObjectImageReference = FileReference(remoteFilePath: remoteImagePath);
+      let requestDrawingObject = DrawingObjectInsertData()
+        .setImageReference(imageReference: requestDrawingObjectImageReference)
+        .setRelativeHorizontalPosition(relativeHorizontalPosition: DrawingObjectInsertData.RelativeHorizontalPosition.margin)
+        .setLeft(_left: 0)
+        .setRelativeVerticalPosition(relativeVerticalPosition: DrawingObjectInsertData.RelativeVerticalPosition.margin)
+        .setTop(top: 0)
+        .setWidth(width: 0)
+        .setHeight(height: 0)
+        .setWrapType(wrapType: DrawingObjectInsertData.WrapType.inline);
+      let request = InsertDrawingObjectByReferenceRequest(name: remoteFileName, drawingObject: requestDrawingObject as! DrawingObjectInsertData, nodePath: "", folder: remoteDataFolder);
+       _ = try super.getApi().insertDrawingObjectByReference(request: request);
+    }
+
+    // Test for adding drawing object online with the image from the request.
+    func testInsertDrawingObjectByReferenceOnline() throws {
+      let requestDocument = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent(localFile, isDirectory: false))!;
+      let requestDrawingObjectImageReferenceStream = InputStream(url: self.getLocalTestDataFolder().appendingPathComponent("Common/aspose-cloud.png", isDirectory: false))!;
+      let requestDrawingObjectImageReference = FileReference(localFileContent: requestDrawingObjectImageReferenceStream);
+      let requestDrawingObject = DrawingObjectInsertData()
+        .setImageReference(imageReference: requestDrawingObjectImageReference)
+        .setRelativeHorizontalPosition(relativeHorizontalPosition: DrawingObjectInsertData.RelativeHorizontalPosition.margin)
+        .setLeft(_left: 0)
+        .setRelativeVerticalPosition(relativeVerticalPosition: DrawingObjectInsertData.RelativeVerticalPosition.margin)
+        .setTop(top: 0)
+        .setWidth(width: 0)
+        .setHeight(height: 0)
+        .setWrapType(wrapType: DrawingObjectInsertData.WrapType.inline);
+      let request = InsertDrawingObjectByReferenceOnlineRequest(document: requestDocument, drawingObject: requestDrawingObject as! DrawingObjectInsertData, nodePath: "");
+       _ = try super.getApi().insertDrawingObjectByReferenceOnline(request: request);
     }
 
     // Test for deleting drawing object.
