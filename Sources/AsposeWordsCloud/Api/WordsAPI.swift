@@ -11674,6 +11674,118 @@ public class WordsAPI : Encryptor {
         return responseObject!;
     }
 
+    // Async representation of insertDrawingObjectByReference method
+    // Inserts a new DrawingObject to the document node. The image is passed by reference:
+    // a storage path in the document folder or its subfolders, an HTTP(S) URL, or a request part.
+    public func insertDrawingObjectByReference(request : InsertDrawingObjectByReferenceRequest, callback : @escaping (_ response : DrawingObjectResponse?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            callback(try request.deserializeResponse(data: response!, headers: headers) as? DrawingObjectResponse, nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of insertDrawingObjectByReference method
+    // Inserts a new DrawingObject to the document node. The image is passed by reference:
+    // a storage path in the document folder or its subfolders, an HTTP(S) URL, or a request part.
+    public func insertDrawingObjectByReference(request : InsertDrawingObjectByReferenceRequest) throws -> DrawingObjectResponse {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : DrawingObjectResponse? = nil;
+        var responseError : Error? = nil;
+        self.insertDrawingObjectByReference(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
+    // Async representation of insertDrawingObjectByReferenceOnline method
+    // Inserts a new DrawingObject to the document node. The image is passed by reference:
+    // a storage path in the document folder or its subfolders, an HTTP(S) URL, or a request part.
+    public func insertDrawingObjectByReferenceOnline(request : InsertDrawingObjectByReferenceOnlineRequest, callback : @escaping (_ response : InsertDrawingObjectByReferenceOnlineResponse?, _ error : Error?) -> ()) {
+        do {
+            if (self.apiInvoker == nil) {
+    #if os(Linux)
+                self.apiInvoker = ApiInvoker(configuration: configuration);
+    #else
+                self.apiInvoker = ApiInvoker(configuration: configuration, encryptor: self);
+    #endif
+            }
+
+            apiInvoker!.invoke(
+                apiRequestData: try request.createApiRequestData(apiInvoker: self.apiInvoker!, configuration: self.configuration),
+                callback: { response, headers, error in
+                    if (error != nil) {
+                        callback(nil, error);
+                    }
+                    else {
+                        do {
+                            callback(try request.deserializeResponse(data: response!, headers: headers) as? InsertDrawingObjectByReferenceOnlineResponse, nil);
+                        }
+                        catch let deserializeError {
+                            callback(nil, deserializeError);
+                        }
+                    }
+                }
+            );
+        }
+        catch let error {
+            callback(nil, error);
+        }
+    }
+
+    // Sync representation of insertDrawingObjectByReferenceOnline method
+    // Inserts a new DrawingObject to the document node. The image is passed by reference:
+    // a storage path in the document folder or its subfolders, an HTTP(S) URL, or a request part.
+    public func insertDrawingObjectByReferenceOnline(request : InsertDrawingObjectByReferenceOnlineRequest) throws -> InsertDrawingObjectByReferenceOnlineResponse {
+        let semaphore = DispatchSemaphore(value: 0);
+        var responseObject : InsertDrawingObjectByReferenceOnlineResponse? = nil;
+        var responseError : Error? = nil;
+        self.insertDrawingObjectByReferenceOnline(request : request, callback: { response, error in
+            responseObject = response;
+            responseError = error;
+            semaphore.signal();
+        });
+
+        semaphore.wait();
+
+        if (responseError != nil) {
+            throw responseError!;
+        }
+        return responseObject!;
+    }
+
     // Async representation of insertDrawingObjectOnline method
     // Inserts a new DrawingObject to the document node.
     public func insertDrawingObjectOnline(request : InsertDrawingObjectOnlineRequest, callback : @escaping (_ response : InsertDrawingObjectOnlineResponse?, _ error : Error?) -> ()) {
